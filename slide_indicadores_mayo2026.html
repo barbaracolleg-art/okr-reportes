@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=1280"/>
+<title>Slide · Indicadores Clave + UX · Mayo 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#e8eaed;display:flex;justify-content:center;align-items:center;min-height:100vh;}
+
+/* ── SLIDE ── */
+.slide{width:1280px;height:720px;background:#fff;display:grid;grid-template-rows:52px 1fr;overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,0.18);}
+
+/* ── HEADER ── */
+.slide-header{background:#1c2b3a;display:flex;justify-content:space-between;align-items:center;padding:0 32px;}
+.slide-header h1{font-size:15px;font-weight:700;color:#fff;letter-spacing:-0.2px;}
+.slide-header .meta{font-size:11px;color:#7a9bb5;}
+
+/* ── BODY ── */
+.slide-body{display:grid;grid-template-columns:1fr 380px;gap:0;overflow:hidden;}
+
+/* ── KPI PANEL ── */
+.kpi-panel{padding:16px 18px;display:flex;flex-direction:column;gap:10px;border-right:1px solid #e4e7eb;}
+
+.eje-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#aab4c0;padding-bottom:5px;border-bottom:1px solid #edf0f3;margin-bottom:2px;}
+
+.kpi-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+
+.kpi-card{background:#f8f9fb;border:1px solid #e4e7eb;border-radius:5px;padding:10px 12px;display:flex;flex-direction:column;gap:3px;position:relative;}
+.kpi-card .dot{position:absolute;top:8px;right:10px;width:7px;height:7px;border-radius:50%;}
+.dot-g{background:#2a6049;}
+.dot-y{background:#b07800;}
+.dot-r{background:#8b1a1a;}
+.kc-tag{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;color:#aab4c0;}
+.kc-name{font-size:10px;color:#3a4f63;line-height:1.3;}
+.kc-val{font-size:22px;font-weight:800;letter-spacing:-0.5px;line-height:1;}
+.kc-val.g{color:#2a6049;}
+.kc-val.y{color:#b07800;}
+.kc-val.r{color:#8b1a1a;}
+.kc-refs{font-size:9px;color:#aab4c0;display:flex;gap:8px;}
+.kc-refs b{color:#7a8a99;}
+.kc-bar{height:3px;background:#e4e7eb;border-radius:2px;margin-top:4px;overflow:hidden;}
+.kc-bar-fill{height:100%;border-radius:2px;}
+.bg-g{background:#2a6049;}
+.bg-y{background:#b07800;}
+.bg-r{background:#8b1a1a;}
+.kc-sub{font-size:9px;color:#aab4c0;margin-top:2px;background:#f0f2f4;border-radius:3px;padding:3px 6px;}
+.kc-sub b{color:#2a6049;}
+
+/* ── UX PANEL ── */
+.ux-panel{padding:14px 16px;display:flex;flex-direction:column;gap:10px;overflow:hidden;}
+
+.ux-block{border:1px solid #e4e7eb;border-radius:6px;overflow:hidden;flex:1;}
+.ux-head{padding:10px 14px;display:flex;justify-content:space-between;align-items:center;}
+.ux-head.compra{background:#1c2b3a;}
+.ux-head.venta{background:#243b52;}
+.ux-head h3{font-size:12px;font-weight:700;color:#fff;}
+.ux-head p{font-size:9px;color:#8da4b8;margin-top:1px;}
+.ux-badge{font-size:18px;font-weight:800;color:#fff;text-align:right;white-space:nowrap;}
+.ux-badge small{display:block;font-size:9px;font-weight:400;color:#8da4b8;}
+.ux-body{padding:10px 14px;display:flex;flex-direction:column;gap:6px;}
+
+.ux-bar-wrap{display:flex;justify-content:space-between;font-size:9px;color:#aab4c0;margin-bottom:2px;}
+.ux-bar-track{background:#edf0f3;border-radius:2px;height:5px;overflow:hidden;margin-bottom:2px;}
+.ux-bar-fill{height:100%;border-radius:2px;}
+.ux-note{font-size:9px;color:#7a8a99;margin-bottom:4px;}
+
+.ux-row{display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-bottom:1px solid #f0f2f4;font-size:10px;}
+.ux-row:last-child{border-bottom:none;}
+.ux-row .ur-name{color:#5a6a7a;}
+.ux-row .ur-val{font-weight:700;}
+.ur-g{color:#2a6049;}
+.ur-y{color:#b07800;}
+.ur-r{color:#8b1a1a;}
+
+.ux-alert{background:#fdf8f0;border-left:3px solid #b07800;padding:5px 8px;border-radius:0 3px 3px 0;font-size:9px;color:#5a4400;line-height:1.5;margin-top:2px;}
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <!-- HEADER -->
+  <div class="slide-header">
+    <h1>Indicadores Clave &amp; Evaluación UX · Mayo 2026</h1>
+    <div class="meta">S3–S6 · 04 al 25 de mayo &nbsp;·&nbsp; AmericaR &nbsp;·&nbsp; 02 jun 2026</div>
+  </div>
+
+  <div class="slide-body">
+
+    <!-- ── KPI PANEL ── -->
+    <div class="kpi-panel">
+
+      <!-- Eje Compra -->
+      <div class="eje-label">Eje Compra</div>
+      <div class="kpi-row">
+
+        <div class="kpi-card">
+          <div class="dot dot-g"></div>
+          <div class="kc-tag">Gestión de Leads</div>
+          <div class="kc-name">Contactabilidad global del pool de leads</div>
+          <div class="kc-val g">87,4%</div>
+          <div class="kc-refs"><span>Base <b>53%</b></span><span>Meta <b>70%</b></span></div>
+          <div class="kc-bar"><div class="kc-bar-fill bg-g" style="width:87.4%"></div></div>
+          <div class="kc-sub">T. primer contacto &nbsp;·&nbsp; Base 8 h &nbsp;·&nbsp; Meta &lt;6 h &nbsp;·&nbsp; Mayo <b>0,61 h ✓</b></div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="dot dot-g"></div>
+          <div class="kc-tag">Eje Compra</div>
+          <div class="kc-name">Conversión end-to-end Lead → Compra</div>
+          <div class="kc-val g">4,1%</div>
+          <div class="kc-refs"><span>Base <b>2,0%</b></span><span>Meta <b>3,5%</b></span></div>
+          <div class="kc-bar"><div class="kc-bar-fill bg-g" style="width:51%"></div></div>
+        </div>
+
+      </div>
+
+      <!-- Preparación -->
+      <div class="eje-label" style="margin-top:4px;">Preparación</div>
+      <div class="kpi-row">
+
+        <div class="kpi-card">
+          <div class="dot dot-r"></div>
+          <div class="kc-tag">Preparación</div>
+          <div class="kc-name">% Stock publicado con foto Impel (Tier 1/2)</div>
+          <div class="kc-val r">61,4%</div>
+          <div class="kc-refs"><span>Base <b>61,5%</b></span><span>Meta <b>95%</b></span></div>
+          <div class="kc-bar"><div class="kc-bar-fill bg-r" style="width:61.4%"></div></div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="dot dot-g"></div>
+          <div class="kc-tag">Preparación</div>
+          <div class="kc-name">% Inventario total publicado en vitrina</div>
+          <div class="kc-val g">91,2%</div>
+          <div class="kc-refs"><span>Base <b>79,2%</b></span><span>Meta <b>90%</b></span></div>
+          <div class="kc-bar"><div class="kc-bar-fill bg-g" style="width:91.2%"></div></div>
+        </div>
+
+      </div>
+
+      <!-- Eje Venta -->
+      <div class="eje-label" style="margin-top:4px;">Eje Venta</div>
+      <div class="kpi-row">
+
+        <div class="kpi-card">
+          <div class="dot dot-y"></div>
+          <div class="kc-tag">Eje Venta</div>
+          <div class="kc-name">Conversión Lead → Venta end-to-end</div>
+          <div class="kc-val y">4,9%</div>
+          <div class="kc-refs"><span>Base <b>4,1%</b></span><span>Meta <b>6%</b></span></div>
+          <div class="kc-bar"><div class="kc-bar-fill bg-y" style="width:49%"></div></div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="dot dot-g"></div>
+          <div class="kc-tag">Captación Digital — Eje Venta</div>
+          <div class="kc-name">Generación semanal de leads</div>
+          <div class="kc-val g">3.215</div>
+          <div class="kc-refs"><span>Base <b>2.916/sem</b></span><span>Meta <b>3.200/sem</b></span></div>
+          <div class="kc-bar"><div class="kc-bar-fill bg-g" style="width:91.9%"></div></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── UX PANEL ── -->
+    <div class="ux-panel">
+
+      <!-- UX Compra -->
+      <div class="ux-block">
+        <div class="ux-head compra">
+          <div>
+            <h3>OKR C2 · UX Sección Compra</h3>
+            <p>Escala /27 pts · Meta: 17 pts al 30 jun 2026</p>
+          </div>
+          <div class="ux-badge">20 pts<small>Supera meta ✓</small></div>
+        </div>
+        <div class="ux-body">
+          <div class="ux-bar-wrap"><span>0</span><span style="color:#b07800;font-weight:600;">Meta 17 pts</span><span>27 pts</span></div>
+          <div class="ux-bar-track"><div class="ux-bar-fill bg-g" style="width:74%"></div></div>
+          <div class="ux-note">Actual 20 pts · 74% escala · +3 pts sobre meta</div>
+          <div class="ux-row"><span class="ur-name">Interacción páginas de compra</span><span class="ur-val ur-r">65,7% · meta 85% ✗</span></div>
+          <div class="ux-row"><span class="ur-name">Dead clicks sección compra</span><span class="ur-val ur-r">10% · meta &lt;5% ✗</span></div>
+          <div class="ux-alert">Score supera meta pero interacción cayó y dead clicks sin mejora — resultado frágil.</div>
+        </div>
+      </div>
+
+      <!-- UX Venta -->
+      <div class="ux-block">
+        <div class="ux-head venta">
+          <div>
+            <h3>OKR V-UX · UX Sección Venta</h3>
+            <p>Escala /24 pts · Meta: 20 pts al 30 jun 2026</p>
+          </div>
+          <div class="ux-badge">17 pts<small>En proceso ⚠</small></div>
+        </div>
+        <div class="ux-body">
+          <div class="ux-bar-wrap"><span>0</span><span style="color:#b07800;font-weight:600;">Meta 20 pts</span><span>24 pts</span></div>
+          <div class="ux-bar-track"><div class="ux-bar-fill bg-y" style="width:71%"></div></div>
+          <div class="ux-note">Actual 17 pts · 71% escala · faltan 3 pts para meta</div>
+          <div class="ux-row"><span class="ur-name">Interacción catálogo</span><span class="ur-val ur-g">83% · meta 80% ✓</span></div>
+          <div class="ux-row"><span class="ur-name">Interacción ficha de auto</span><span class="ur-val ur-y">76% · meta 80% ⚠</span></div>
+          <div class="ux-row"><span class="ur-name">Dead clicks catálogo</span><span class="ur-val ur-r">30% · meta &lt;11% ✗</span></div>
+          <div class="ux-row"><span class="ur-name">Dead clicks ficha de auto</span><span class="ur-val ur-y">12% · meta &lt;11% ⚠</span></div>
+          <div class="ux-alert">Dead clicks catálogo saltaron de 13,4% a 30% — requiere revisión urgente.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>
