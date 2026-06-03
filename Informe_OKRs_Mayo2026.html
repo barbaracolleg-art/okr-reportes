@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>OKRs Mayo 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f4f5f7;color:#1c2b3a;font-size:13px;line-height:1.5;}
+
+/* ── LAYOUT ── */
+.page{max-width:1080px;margin:0 auto;padding:40px 32px 60px;}
+
+/* ── HEADER ── */
+.header{display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:20px;border-bottom:2px solid #1c2b3a;margin-bottom:32px;}
+.header-left h1{font-size:22px;font-weight:700;letter-spacing:-0.3px;color:#1c2b3a;}
+.header-left p{font-size:12px;color:#7a8a99;margin-top:3px;}
+.header-right{text-align:right;}
+.header-right .date{font-size:12px;color:#7a8a99;}
+.header-right .period{font-size:13px;font-weight:600;color:#1c2b3a;}
+
+/* ── SCORE STRIP ── */
+.score-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#dde1e7;border:1px solid #dde1e7;border-radius:6px;overflow:hidden;margin-bottom:36px;}
+.score-cell{background:#fff;padding:18px 24px;}
+.score-cell .sc-val{font-size:28px;font-weight:800;color:#1c2b3a;line-height:1;}
+.score-cell .sc-val.good{color:#2a6049;}
+.score-cell .sc-val.warn{color:#7a5200;}
+.score-cell .sc-val.bad {color:#8b1a1a;}
+.score-cell .sc-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;color:#7a8a99;margin-bottom:6px;}
+.score-cell .sc-note{font-size:11px;color:#7a8a99;margin-top:4px;}
+
+/* ── SECTION TITLE ── */
+.sec-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#7a8a99;margin-bottom:14px;margin-top:36px;padding-bottom:6px;border-bottom:1px solid #dde1e7;}
+
+/* ── KPI GRID ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.kpi{background:#fff;border:1px solid #dde1e7;border-radius:6px;padding:20px 22px;position:relative;}
+.kpi-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;color:#7a8a99;margin-bottom:6px;}
+.kpi-name{font-size:12px;color:#3a4f63;margin-bottom:18px;line-height:1.4;}
+.kpi-val{font-size:36px;font-weight:800;letter-spacing:-1px;line-height:1;margin-bottom:6px;}
+.kpi-val.good{color:#2a6049;}
+.kpi-val.warn{color:#7a5200;}
+.kpi-val.bad {color:#8b1a1a;}
+.kpi-val.muted{color:#7a8a99;}
+.kpi-refs{display:flex;gap:14px;margin-bottom:14px;font-size:11px;color:#7a8a99;}
+.kpi-refs span b{color:#3a4f63;}
+
+/* ── PROGRESS BAR ── */
+.bar-wrap{margin-bottom:10px;}
+.bar-labels{display:flex;justify-content:space-between;font-size:10px;color:#aab4c0;margin-bottom:4px;}
+.bar-track{background:#edf0f3;border-radius:2px;height:5px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:2px;}
+.fill-good{background:#2a6049;}
+.fill-warn{background:#b07800;}
+.fill-bad {background:#8b1a1a;}
+
+/* ── SPARKLINE ── */
+.spark{display:flex;align-items:flex-end;gap:5px;height:38px;margin:12px 0 8px;}
+.sp-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;}
+.sp-bar{width:100%;border-radius:2px 2px 0 0;}
+.sp-v{font-size:9px;font-weight:700;}
+.sp-l{font-size:9px;color:#aab4c0;}
+
+/* ── STATUS TAG ── */
+.status{display:inline-block;padding:3px 10px;border-radius:3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
+.s-good{background:#e6f0ec;color:#2a6049;}
+.s-warn{background:#f5edda;color:#7a5200;}
+.s-bad {background:#f5e6e6;color:#8b1a1a;}
+.s-mute{background:#edf0f3;color:#5a6a7a;}
+
+/* ── SUB-ROW in kpi ── */
+.sub-rows{display:flex;flex-direction:column;gap:5px;margin:10px 0;}
+.sub-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #f0f2f4;font-size:11px;}
+.sub-row:last-child{border-bottom:none;}
+.sub-row .sr-name{color:#5a6a7a;}
+.sub-row .sr-val{font-weight:700;}
+.sr-val.g{color:#2a6049;}
+.sr-val.r{color:#8b1a1a;}
+.sr-val.y{color:#7a5200;}
+
+/* ── OKR C2 ── */
+.c2-wrap{background:#fff;border:1px solid #dde1e7;border-radius:6px;overflow:hidden;}
+.c2-head{background:#1c2b3a;color:#fff;padding:22px 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.c2-head h3{font-size:15px;font-weight:700;}
+.c2-head p{font-size:12px;color:#8da4b8;margin-top:2px;}
+.c2-head .c2-badge{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:4px;padding:6px 16px;font-size:20px;font-weight:800;color:#fff;text-align:center;white-space:nowrap;}
+.c2-badge small{display:block;font-size:10px;font-weight:400;color:#8da4b8;text-transform:uppercase;letter-spacing:0.5px;}
+.c2-body{padding:24px 28px;}
+
+/* Score timeline */
+.timeline{display:flex;gap:0;border:1px solid #dde1e7;border-radius:6px;overflow:hidden;margin-bottom:24px;}
+.tl-week{flex:1;padding:14px 10px;text-align:center;border-right:1px solid #dde1e7;background:#fff;}
+.tl-week:last-child{border-right:none;}
+.tl-week.active{background:#f4f5f7;}
+.tl-week.best{background:#e6f0ec;}
+.tl-week .tw-lbl{font-size:10px;color:#aab4c0;margin-bottom:6px;}
+.tl-week .tw-score{font-size:22px;font-weight:800;color:#1c2b3a;}
+.tl-week.best .tw-score{color:#2a6049;}
+.tl-week .tw-date{font-size:10px;color:#aab4c0;margin-top:4px;}
+.tl-week.faded{opacity:0.45;}
+
+/* Palanca block */
+.palanca{border:1px solid #dde1e7;border-radius:6px;padding:18px 22px;margin-bottom:12px;}
+.palanca-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12px;}
+.p-name{font-size:12px;font-weight:600;color:#1c2b3a;}
+.p-sub{font-size:11px;color:#7a8a99;margin-top:2px;}
+.p-nums{display:flex;gap:20px;flex-shrink:0;}
+.p-num{text-align:center;}
+.p-num .pv{font-size:18px;font-weight:800;}
+.p-num .pl{font-size:9px;color:#aab4c0;text-transform:uppercase;letter-spacing:0.5px;margin-top:1px;}
+
+/* Alert */
+.c2-alert{background:#fdf8f0;border-left:3px solid #b07800;border-radius:0 4px 4px 0;padding:14px 18px;margin-top:8px;}
+.c2-alert .al-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#7a5200;margin-bottom:5px;}
+.c2-alert p{font-size:12px;color:#5a4400;line-height:1.6;}
+
+/* ── PRIORIDADES ── */
+.prio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.prio{background:#fff;border:1px solid #dde1e7;border-radius:6px;padding:16px 18px;display:flex;gap:12px;}
+.prio-line{width:3px;border-radius:2px;flex-shrink:0;}
+.prio-line.r{background:#8b1a1a;}
+.prio-line.y{background:#b07800;}
+.prio-line.g{background:#2a6049;}
+.prio-text strong{display:block;font-size:12px;font-weight:700;color:#1c2b3a;margin-bottom:3px;}
+.prio-text span{font-size:11px;color:#5a6a7a;line-height:1.5;}
+
+/* ── FOOTER ── */
+.footer{margin-top:48px;padding-top:16px;border-top:1px solid #dde1e7;display:flex;justify-content:space-between;font-size:11px;color:#aab4c0;}
+
+@media(max-width:860px){
+  .kpi-grid,.prio-grid,.score-strip{grid-template-columns:1fr 1fr;}
+  .timeline{flex-wrap:wrap;}
+  .tl-week{min-width:80px;}
+}
+@media(max-width:540px){
+  .kpi-grid,.prio-grid,.score-strip{grid-template-columns:1fr;}
+  .page{padding:24px 16px 48px;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Seguimiento OKRs — Mayo 2026</h1>
+      <p>Fuente: Seguimiento_por_Squad (2).pdf &nbsp;·&nbsp; Semanas S3–S6 · 04 al 25 de mayo</p>
+    </div>
+    <div class="header-right">
+      <div class="period">S3 → S6</div>
+      <div class="date">Generado 02 jun 2026</div>
+    </div>
+  </div>
+
+  <!-- SCORE STRIP -->
+  <div class="score-strip">
+    <div class="score-cell">
+      <div class="sc-label">Sobre meta</div>
+      <div class="sc-val good">2 / 5</div>
+      <div class="sc-note">Contactabilidad · Inventario vitrina</div>
+    </div>
+    <div class="score-cell">
+      <div class="sc-label">En riesgo</div>
+      <div class="sc-val warn">2 / 5</div>
+      <div class="sc-note">Conv. Venta · Cotización web</div>
+    </div>
+    <div class="score-cell">
+      <div class="sc-label">Crítico</div>
+      <div class="sc-val bad">1 / 5</div>
+      <div class="sc-note">Foto Impel — sin avance vs. baseline</div>
+    </div>
+  </div>
+
+  <!-- ANÁLISIS EJECUTIVO -->
+  <div class="sec-title">Análisis ejecutivo</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;">
+
+    <div style="background:#fff;border:1px solid #dde1e7;border-radius:6px;padding:20px 22px;display:flex;gap:14px;">
+      <div style="width:3px;border-radius:2px;background:#2a6049;flex-shrink:0;"></div>
+      <div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#2a6049;margin-bottom:6px;">Celebrar — con matiz</div>
+        <div style="font-size:12px;font-weight:700;color:#1c2b3a;margin-bottom:4px;">La contactabilidad resolvió el problema de origen</div>
+        <div style="font-size:12px;color:#5a6a7a;line-height:1.6;">Pasar de 53% a 87% es el mayor logro del mes. Pero S3 y S4 estuvieron bajo meta (60% y 57%). El resultado depende de sostener el nivel de S5/S6, no del promedio mensual.</div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #dde1e7;border-radius:6px;padding:20px 22px;display:flex;gap:14px;">
+      <div style="width:3px;border-radius:2px;background:#2a6049;flex-shrink:0;"></div>
+      <div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#2a6049;margin-bottom:6px;">Celebrar — modelo replicable</div>
+        <div style="font-size:12px;font-weight:700;color:#1c2b3a;margin-bottom:4px;">Inventario en vitrina: el OKR más consistente</div>
+        <div style="font-size:12px;color:#5a6a7a;line-height:1.6;">91% todas las semanas sin excepción. Reducir Acopio de 114 → 16 unidades fue la palanca clave. Este modelo de ejecución puede replicarse en otros ejes.</div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #dde1e7;border-radius:6px;padding:20px 22px;display:flex;gap:14px;">
+      <div style="width:3px;border-radius:2px;background:#8b1a1a;flex-shrink:0;"></div>
+      <div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#8b1a1a;margin-bottom:6px;">Decisión ejecutiva urgente</div>
+        <div style="font-size:12px;font-weight:700;color:#1c2b3a;margin-bottom:4px;">Foto Impel no cerrará sola</div>
+        <div style="font-size:12px;color:#5a6a7a;line-height:1.6;">Mayo cerró en 61,4% — idéntico al baseline. Con junio como mes de cierre, llegar al 95% requiere una decisión de recursos: Test Car al flujo Llaima, foto inspección activa y presupuesto adicional. Sin eso, el OKR se pierde.</div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #dde1e7;border-radius:6px;padding:20px 22px;display:flex;gap:14px;">
+      <div style="width:3px;border-radius:2px;background:#8b1a1a;flex-shrink:0;"></div>
+      <div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#8b1a1a;margin-bottom:6px;">Decisión ejecutiva urgente</div>
+        <div style="font-size:12px;font-weight:700;color:#1c2b3a;margin-bottom:4px;">Financiamiento bloquea el eje venta</div>
+        <div style="font-size:12px;color:#5a6a7a;line-height:1.6;">Palanca V1.3 en 5,4% vs. meta 14%. Sin una propuesta comercial activa para ese segmento en la primera semana de junio, el OKR de venta no se cumple.</div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #dde1e7;border-radius:6px;padding:20px 22px;display:flex;gap:14px;">
+      <div style="width:3px;border-radius:2px;background:#b07800;flex-shrink:0;"></div>
+      <div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#7a5200;margin-bottom:6px;">Resultado frágil — verificar</div>
+        <div style="font-size:12px;font-weight:700;color:#1c2b3a;margin-bottom:4px;">El score UX C2 puede ser una trampa</div>
+        <div style="font-size:12px;color:#5a6a7a;line-height:1.6;">Subió de 7,5 a 20 pts superando la meta, pero la interacción <i>cayó</i> y los dead clicks no mejoraron. Si el score viene de una evaluación puntual y no de comportamiento real, el resultado es frágil y puede revertir.</div>
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #dde1e7;border-radius:6px;padding:20px 22px;display:flex;gap:14px;">
+      <div style="width:3px;border-radius:2px;background:#b07800;flex-shrink:0;"></div>
+      <div>
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#7a5200;margin-bottom:6px;">Patrón estructural</div>
+        <div style="font-size:12px;font-weight:700;color:#1c2b3a;margin-bottom:4px;">El embudo está roto en el medio</div>
+        <div style="font-size:12px;color:#5a6a7a;line-height:1.6;">Entran leads (contactabilidad 87%) y hay stock visible (vitrina 91%), pero la conversión a venta no cierra. El cuello está en citas de inspección (33% vs. 40%) y financiamiento (5,4% vs. 14%). Resolver ahí mueve todos los ejes juntos.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 6 KPIs -->
+  <div class="sec-title" style="margin-top:36px;">Indicadores clave · Mayo 2026</div>
+  <div class="kpi-grid">
+
+    <!-- 1 Contactabilidad -->
+    <div class="kpi">
+      <div class="kpi-tag">Gestión de Leads</div>
+      <div class="kpi-name">Contactabilidad global del pool de leads</div>
+      <div class="kpi-val good">87,4%</div>
+      <div class="kpi-refs"><span>Base <b>53%</b></span><span>Meta <b>70%</b></span></div>
+      <div class="bar-wrap">
+        <div class="bar-labels"><span>0%</span><span>Meta 70%</span><span>100%</span></div>
+        <div class="bar-track"><div class="bar-fill fill-good" style="width:87.4%"></div></div>
+      </div>
+      <div class="spark">
+        <div class="sp-col"><div class="sp-bar" style="height:22px;background:#c8d9d3;"></div><div class="sp-v" style="color:#7a8a99;">60%</div><div class="sp-l">S3</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:19px;background:#c8d9d3;"></div><div class="sp-v" style="color:#7a8a99;">57%</div><div class="sp-l">S4</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:38px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">97%</div><div class="sp-l">S5</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:33px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">87%</div><div class="sp-l">S6</div></div>
+      </div>
+      <span class="status s-good">+17 pts sobre meta</span>
+    </div>
+
+    <!-- 2 Conv. Compra -->
+    <div class="kpi">
+      <div class="kpi-tag">Eje Compra</div>
+      <div class="kpi-name">Conversión end-to-end Lead → Compra</div>
+      <div class="kpi-val good">4,1%</div>
+      <div class="kpi-refs"><span>Base <b>2,0%</b></span><span>Meta <b>3,5%</b></span></div>
+      <div class="bar-wrap">
+        <div class="bar-labels"><span>0%</span><span>Meta 3,5%</span><span>8%</span></div>
+        <div class="bar-track"><div class="bar-fill fill-good" style="width:51%"></div></div>
+      </div>
+      <div class="spark">
+        <div class="sp-col"><div class="sp-bar" style="height:28px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">5,7%</div><div class="sp-l">S3</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:38px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">7,8%</div><div class="sp-l">S4</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:22px;background:#b07800;"></div><div class="sp-v" style="color:#b07800;">4,5%</div><div class="sp-l">S5</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:18px;background:#b07800;"></div><div class="sp-v" style="color:#b07800;">4,1%</div><div class="sp-l">S6</div></div>
+      </div>
+      <span class="status s-warn">Tendencia bajista — vigilar en junio</span>
+    </div>
+
+    <!-- 3 Foto Impel -->
+    <div class="kpi">
+      <div class="kpi-tag">Preparación</div>
+      <div class="kpi-name">% Stock publicado con foto Impel (Tier 1/2)</div>
+      <div class="kpi-val bad">61,4%</div>
+      <div class="kpi-refs"><span>Base <b>61,5%</b></span><span>Meta <b>95%</b></span></div>
+      <div class="bar-wrap">
+        <div class="bar-labels"><span>0%</span><span>Meta 95%</span><span>100%</span></div>
+        <div class="bar-track"><div class="bar-fill fill-bad" style="width:61.4%"></div></div>
+      </div>
+      <div class="spark">
+        <div class="sp-col"><div class="sp-bar" style="height:20px;background:#8b1a1a;"></div><div class="sp-v" style="color:#8b1a1a;">58%</div><div class="sp-l">S3</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:22px;background:#8b1a1a;"></div><div class="sp-v" style="color:#8b1a1a;">59%</div><div class="sp-l">S4</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:23px;background:#8b1a1a;"></div><div class="sp-v" style="color:#8b1a1a;">61%</div><div class="sp-l">S5</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:25px;background:#8b1a1a;"></div><div class="sp-v" style="color:#8b1a1a;">64%</div><div class="sp-l">S6</div></div>
+      </div>
+      <span class="status s-bad">Sin avance — igual al baseline</span>
+    </div>
+
+    <!-- 4 Inventario vitrina -->
+    <div class="kpi">
+      <div class="kpi-tag">Preparación</div>
+      <div class="kpi-name">% Inventario total publicado en vitrina</div>
+      <div class="kpi-val good">91,2%</div>
+      <div class="kpi-refs"><span>Base <b>79,2%</b></span><span>Meta <b>90%</b></span></div>
+      <div class="bar-wrap">
+        <div class="bar-labels"><span>0%</span><span>Meta 90%</span><span>100%</span></div>
+        <div class="bar-track"><div class="bar-fill fill-good" style="width:91.2%"></div></div>
+      </div>
+      <div class="spark">
+        <div class="sp-col"><div class="sp-bar" style="height:36px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">91%</div><div class="sp-l">S3</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:37px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">91%</div><div class="sp-l">S4</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:36px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">91%</div><div class="sp-l">S5</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:38px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">91%</div><div class="sp-l">S6</div></div>
+      </div>
+      <span class="status s-good">Consistente todas las semanas</span>
+    </div>
+
+    <!-- 5 Conv. Venta -->
+    <div class="kpi">
+      <div class="kpi-tag">Eje Venta</div>
+      <div class="kpi-name">Conversión Lead → Venta end-to-end</div>
+      <div class="kpi-val warn">4,9%</div>
+      <div class="kpi-refs"><span>Base <b>4,1%</b></span><span>Meta <b>6%</b></span></div>
+      <div class="bar-wrap">
+        <div class="bar-labels"><span>0%</span><span>Meta 6%</span><span>10%</span></div>
+        <div class="bar-track"><div class="bar-fill fill-warn" style="width:49%"></div></div>
+      </div>
+      <div class="sub-rows">
+        <div class="sub-row"><span class="sr-name">Lead VPP → SQL</span><span class="sr-val g">15,7% · meta 15% ✓</span></div>
+        <div class="sub-row"><span class="sr-name">Lead SQL + Financiamiento</span><span class="sr-val r">5,4% · meta 14% ✗</span></div>
+        <div class="sub-row"><span class="sr-name">Citas de venta efectivas</span><span class="sr-val g">22,9% · meta 20% ✓</span></div>
+      </div>
+      <span class="status s-bad">Financiamiento: cuello de botella</span>
+    </div>
+
+    <!-- 6 Cotización web -->
+    <div class="kpi">
+      <div class="kpi-tag">Captación Digital — Eje Venta</div>
+      <div class="kpi-name">Tasa Tráfico → Cotización web</div>
+      <div class="kpi-val muted">—</div>
+      <div class="kpi-refs"><span>Base <b>0,63%</b></span><span>Meta <b>1,5%</b></span></div>
+      <div class="sub-rows" style="margin-top:18px;">
+        <div class="sub-row"><span class="sr-name">Buy process desde ficha</span><span class="sr-val y">6% · meta 7%</span></div>
+        <div class="sub-row"><span class="sr-name">Buy process desde catálogo</span><span class="sr-val y">3% · meta 4%</span></div>
+        <div class="sub-row"><span class="sr-name">Generación semanal de leads</span><span class="sr-val g">~3.215 · meta 3.200 ✓</span></div>
+      </div>
+      <span class="status s-mute">Sin dato directo en este reporte</span>
+    </div>
+
+  </div><!-- /kpi-grid -->
+
+
+  <!-- OKR C2 -->
+  <div class="sec-title" style="margin-top:44px;">OKR C2 — Evaluación UX Sección Compra vs. Competidores</div>
+  <div class="c2-wrap">
+
+    <div class="c2-head">
+      <div>
+        <h3>Nota de evaluación UX · Sección Compra</h3>
+        <p>Pasar de 7,5 a 17 puntos (escala /27) al 30 de junio de 2026</p>
+      </div>
+      <div class="c2-badge">
+        20 pts
+        <small>Mayo · Supera meta ✓</small>
+      </div>
+    </div>
+
+    <div class="c2-body">
+
+      <!-- Timeline score -->
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#aab4c0;margin-bottom:10px;">Evolución del score UX (/27 pts)</div>
+      <div class="timeline" style="margin-bottom:6px;">
+        <div class="tl-week faded">
+          <div class="tw-lbl">Baseline</div>
+          <div class="tw-score">7,5</div>
+          <div class="tw-date">—</div>
+        </div>
+        <div class="tl-week faded">
+          <div class="tw-lbl">S3</div>
+          <div class="tw-score">7,5</div>
+          <div class="tw-date">04/05</div>
+        </div>
+        <div class="tl-week faded">
+          <div class="tw-lbl">S4</div>
+          <div class="tw-score">7,5</div>
+          <div class="tw-date">11/05</div>
+        </div>
+        <div class="tl-week active">
+          <div class="tw-lbl">S5</div>
+          <div class="tw-score" style="color:#7a5200;">13,5</div>
+          <div class="tw-date">18/05</div>
+        </div>
+        <div class="tl-week best">
+          <div class="tw-lbl">S6 · Mayo</div>
+          <div class="tw-score">20</div>
+          <div class="tw-date">25/05</div>
+        </div>
+        <div class="tl-week faded" style="border-left:1px dashed #dde1e7;">
+          <div class="tw-lbl">S8 ·proyec.</div>
+          <div class="tw-score" style="color:#2a6049;">20</div>
+          <div class="tw-date">08/06</div>
+        </div>
+      </div>
+      <div style="font-size:10px;color:#aab4c0;margin-bottom:24px;">Línea punteada = proyección junio · Score mantuvo 7,5 pts durante S3–S4, saltó +6 pts en S5 y +6,5 pts en S6</div>
+
+      <!-- Barra score -->
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:#aab4c0;margin-bottom:4px;">
+        <span>0 pts</span>
+        <span style="color:#b07800;font-weight:700;">Meta: 17 pts (63% escala)</span>
+        <span>27 pts</span>
+      </div>
+      <div class="bar-track" style="height:8px;margin-bottom:5px;">
+        <div class="bar-fill fill-good" style="width:74%;"></div>
+      </div>
+      <div style="font-size:10px;color:#2a6049;margin-bottom:28px;">Actual: 20 pts → 74% de la escala &nbsp;·&nbsp; Meta superada en +3 pts</div>
+
+      <!-- Palanca C2.1 -->
+      <div class="palanca">
+        <div class="palanca-top">
+          <div>
+            <div class="p-name">C2.1 · Tasa de Interacción en Páginas de Compra</div>
+            <div class="p-sub">Objetivo: aumentar de 69% a 85%</div>
+          </div>
+          <div class="p-nums">
+            <div class="p-num"><div class="pv" style="color:#7a8a99;font-size:14px;">71,2%</div><div class="pl">Base</div></div>
+            <div class="p-num"><div class="pv bad">65,7%</div><div class="pl">Mayo</div></div>
+            <div class="p-num"><div class="pv" style="color:#7a8a99;font-size:14px;">85%</div><div class="pl">Meta</div></div>
+          </div>
+        </div>
+        <div class="spark" style="height:32px;margin-bottom:6px;">
+          <div class="sp-col"><div class="sp-bar" style="height:26px;background:#c9b8b8;"></div><div class="sp-v" style="color:#8b1a1a;">69,5%</div><div class="sp-l">S3</div></div>
+          <div class="sp-col"><div class="sp-bar" style="height:20px;background:#c9b8b8;"></div><div class="sp-v" style="color:#8b1a1a;">66,4%</div><div class="sp-l">S4</div></div>
+          <div class="sp-col"><div class="sp-bar" style="height:10px;background:#c9b8b8;"></div><div class="sp-v" style="color:#8b1a1a;">61,1%</div><div class="sp-l">S5</div></div>
+          <div class="sp-col"><div class="sp-bar" style="height:14px;background:#c9b8b8;"></div><div class="sp-v" style="color:#8b1a1a;">64,6%</div><div class="sp-l">S6</div></div>
+        </div>
+        <div class="bar-track" style="margin-bottom:8px;"><div class="bar-fill fill-bad" style="width:65.7%"></div></div>
+        <span class="status s-bad">Cayó 5,5 pts vs. baseline — dirección contraria a la meta</span>
+      </div>
+
+      <!-- Palanca C2.2 -->
+      <div class="palanca">
+        <div class="palanca-top">
+          <div>
+            <div class="p-name">C2.2 · Dead Clicks en Sección Compra</div>
+            <div class="p-sub">Objetivo: reducir de 9,75% a menos del 5%</div>
+          </div>
+          <div class="p-nums">
+            <div class="p-num"><div class="pv" style="color:#7a8a99;font-size:14px;">9,8%</div><div class="pl">Base</div></div>
+            <div class="p-num"><div class="pv bad">10%</div><div class="pl">Mayo</div></div>
+            <div class="p-num"><div class="pv" style="color:#7a8a99;font-size:14px;">&lt;5%</div><div class="pl">Meta</div></div>
+          </div>
+        </div>
+        <div class="spark" style="height:32px;margin-bottom:6px;">
+          <div class="sp-col"><div class="sp-bar" style="height:30px;background:#c9b8b8;"></div><div class="sp-v" style="color:#8b1a1a;">10,2%</div><div class="sp-l">S3</div></div>
+          <div class="sp-col"><div class="sp-bar" style="height:30px;background:#c9b8b8;"></div><div class="sp-v" style="color:#8b1a1a;">10,2%</div><div class="sp-l">S4</div></div>
+          <div class="sp-col"><div class="sp-bar" style="height:30px;background:#c9b8b8;"></div><div class="sp-v" style="color:#8b1a1a;">~10%</div><div class="sp-l">S5</div></div>
+          <div class="sp-col"><div class="sp-bar" style="height:30px;background:#c9b8b8;"></div><div class="sp-v" style="color:#8b1a1a;">10%</div><div class="sp-l">S6</div></div>
+        </div>
+        <div class="bar-track" style="margin-bottom:8px;"><div class="bar-fill fill-bad" style="width:100%"></div></div>
+        <span class="status s-bad">Sin cambio en todo mayo — duplica el límite permitido (&lt;5%)</span>
+      </div>
+
+      <!-- Alerta desconexión -->
+      <div class="c2-alert">
+        <div class="al-title">Alerta — Desconexión entre OKR y palancas operacionales</div>
+        <p>El score UX saltó de <b>7,5 → 20 pts</b>, superando la meta, posiblemente por mejoras en la auditoría de expertos. Sin embargo, la tasa de interacción <b>cayó 5,5 pts</b> y los dead clicks <b>no mejoraron un solo punto</b> en todo mayo. Si el score se reevalúa sin avance real en estas métricas, el resultado puede revertir en junio.</p>
+      </div>
+
+    </div>
+  </div><!-- /c2-wrap -->
+
+
+  <!-- PRIORIDADES -->
+  <div class="sec-title" style="margin-top:44px;">Prioridades para junio — mes de cierre</div>
+  <div class="prio-grid">
+
+    <div class="prio">
+      <div class="prio-line r"></div>
+      <div class="prio-text">
+        <strong>Foto Impel — acción de shock</strong>
+        <span>Activar Test Car en flujo Llaima y foto inspección mejorada. El 95% es inalcanzable sin intervención inmediata.</span>
+      </div>
+    </div>
+
+    <div class="prio">
+      <div class="prio-line r"></div>
+      <div class="prio-text">
+        <strong>Financiamiento (V1.3)</strong>
+        <span>5,4% vs. meta 14%. Solo 38% de cumplimiento — mayor gap del eje venta.</span>
+      </div>
+    </div>
+
+    <div class="prio">
+      <div class="prio-line r"></div>
+      <div class="prio-text">
+        <strong>Automatización de citas (V2.1–V2.3)</strong>
+        <span>En 0% de avance. Bloquea la escalabilidad del eje venta para el cierre.</span>
+      </div>
+    </div>
+
+    <div class="prio">
+      <div class="prio-line y"></div>
+      <div class="prio-text">
+        <strong>Citas de inspección (33,3% → meta 40%)</strong>
+        <span>Cuello de botella del embudo compra. Capacitación en protocolos aún en 0%.</span>
+      </div>
+    </div>
+
+    <div class="prio">
+      <div class="prio-line y"></div>
+      <div class="prio-text">
+        <strong>Palancas UX Compra (C2.1 y C2.2)</strong>
+        <span>Interacción cayó y dead clicks sin mejora. El score C2 puede revertir si no se actúa sobre las palancas.</span>
+      </div>
+    </div>
+
+    <div class="prio">
+      <div class="prio-line g"></div>
+      <div class="prio-text">
+        <strong>Mantener ritmo actual</strong>
+        <span>Contactabilidad (87%), inventario vitrina (91%) y tiempo de primer contacto (0,61h) están sobre meta.</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <span>Seguimiento OKRs · Mayo 2026 · Fuente: Seguimiento_por_Squad (2).pdf</span>
+    <span>AmericaR · 02 junio 2026</span>
+  </div>
+
+</div>
+</body>
+</html>

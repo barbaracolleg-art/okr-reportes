@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Enfoque Ventas — Junio 2026</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f4f5f7;color:#1c2b3a;font-size:13px;line-height:1.5;}
+.page{max-width:1080px;margin:0 auto;padding:40px 32px 64px;}
+
+/* HEADER */
+.header{padding-bottom:20px;border-bottom:2px solid #1c2b3a;margin-bottom:32px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;}
+.header h1{font-size:22px;font-weight:700;letter-spacing:-0.3px;}
+.header p{font-size:12px;color:#7a8a99;margin-top:3px;}
+.header-right{text-align:right;font-size:12px;color:#7a8a99;}
+.header-right b{display:block;font-size:13px;font-weight:700;color:#1c2b3a;}
+
+/* SECTION TITLE */
+.sec{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#7a8a99;margin-bottom:14px;margin-top:40px;padding-bottom:6px;border-bottom:1px solid #dde1e7;}
+.sec:first-of-type{margin-top:0;}
+
+/* STATUS */
+.tag{display:inline-block;padding:2px 9px;border-radius:3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;}
+.t-g{background:#e6f0ec;color:#2a6049;}
+.t-r{background:#f5e6e6;color:#8b1a1a;}
+.t-y{background:#f5edda;color:#7a5200;}
+.t-n{background:#edf0f3;color:#5a6a7a;}
+
+/* ── ESTADO ACTUAL ── */
+.estado-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:4px;}
+.e-card{background:#fff;border:1px solid #dde1e7;border-radius:6px;padding:18px 20px;}
+.e-card .ec-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#7a8a99;margin-bottom:6px;}
+.e-card .ec-val{font-size:32px;font-weight:800;letter-spacing:-1px;line-height:1;margin-bottom:4px;}
+.ec-val.g{color:#2a6049;}
+.ec-val.r{color:#8b1a1a;}
+.ec-val.y{color:#7a5200;}
+.ec-val.n{color:#7a8a99;}
+.e-card .ec-ref{font-size:11px;color:#7a8a99;margin-bottom:10px;}
+.e-card .ec-note{font-size:11px;color:#5a6a7a;border-top:1px solid #f0f2f4;padding-top:8px;margin-top:4px;line-height:1.5;}
+
+/* ── FUNNEL ── */
+.funnel-wrap{background:#fff;border:1px solid #dde1e7;border-radius:6px;overflow:hidden;}
+.funnel-head{background:#1c2b3a;color:#fff;padding:16px 24px;font-size:13px;font-weight:700;}
+.funnel-head span{font-size:12px;font-weight:400;color:#8da4b8;margin-left:8px;}
+.funnel-body{padding:0;}
+.funnel-step{display:grid;grid-template-columns:220px 1fr auto;align-items:center;gap:0;border-bottom:1px solid #f0f2f4;min-height:56px;}
+.funnel-step:last-child{border-bottom:none;}
+.fs-name{padding:14px 20px;font-size:12px;font-weight:600;color:#1c2b3a;border-right:1px solid #f0f2f4;}
+.fs-bar-wrap{padding:0 20px;position:relative;}
+.fs-track{background:#edf0f3;border-radius:2px;height:6px;position:relative;}
+.fs-fill{height:100%;border-radius:2px;}
+.fs-fill.g{background:#2a6049;}
+.fs-fill.y{background:#b07800;}
+.fs-fill.r{background:#8b1a1a;}
+.fs-meta-line{position:absolute;top:-5px;height:16px;width:1.5px;background:#b07800;}
+.fs-meta-label{position:absolute;top:-16px;font-size:9px;color:#b07800;font-weight:700;transform:translateX(-50%);}
+.fs-right{padding:14px 20px;text-align:right;border-left:1px solid #f0f2f4;min-width:140px;}
+.fs-right .fsr-val{font-size:18px;font-weight:800;line-height:1;}
+.fs-right .fsr-meta{font-size:10px;color:#7a8a99;margin-top:2px;}
+.fs-right .fsr-note{font-size:10px;margin-top:4px;}
+.step-ok   .fs-name{border-left:3px solid #2a6049;}
+.step-warn .fs-name{border-left:3px solid #b07800;}
+.step-bad  .fs-name{border-left:3px solid #8b1a1a;}
+
+/* ── BRECHAS ── */
+.brechas-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.b-card{background:#fff;border:1px solid #dde1e7;border-radius:6px;padding:20px 22px;display:flex;flex-direction:column;gap:10px;}
+.b-card .bc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+.b-card .bc-title{font-size:13px;font-weight:700;color:#1c2b3a;}
+.b-card .bc-sub{font-size:11px;color:#7a8a99;margin-top:2px;}
+.b-card .bc-nums{display:flex;gap:16px;flex-shrink:0;}
+.bc-num{text-align:center;}
+.bc-num .bv{font-size:20px;font-weight:800;}
+.bc-num .bl{font-size:9px;text-transform:uppercase;letter-spacing:0.5px;color:#aab4c0;margin-top:1px;}
+.b-bar-track{background:#edf0f3;border-radius:2px;height:5px;}
+.b-bar-fill{height:100%;border-radius:2px;}
+.b-card .bc-action{font-size:11px;color:#3a4f63;background:#f4f5f7;border-radius:4px;padding:8px 12px;line-height:1.5;}
+.bc-action b{color:#1c2b3a;}
+
+/* ── PLAN JUNIO ── */
+.plan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.plan-week{background:#fff;border:1px solid #dde1e7;border-radius:6px;overflow:hidden;}
+.pw-head{padding:12px 16px;border-bottom:1px solid #f0f2f4;}
+.pw-head .pw-period{font-size:11px;font-weight:700;color:#1c2b3a;}
+.pw-head .pw-date{font-size:10px;color:#aab4c0;margin-top:1px;}
+.pw-body{padding:14px 16px;display:flex;flex-direction:column;gap:8px;}
+.pw-item{display:flex;gap:8px;align-items:flex-start;}
+.pw-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+.pw-item p{font-size:11px;color:#3a4f63;line-height:1.5;}
+.pw-item p b{color:#1c2b3a;display:block;}
+
+/* ── PALANCAS ── */
+.palancas-table{background:#fff;border:1px solid #dde1e7;border-radius:6px;overflow:hidden;}
+.pt-row{display:grid;grid-template-columns:1fr 80px 80px 80px 120px;gap:0;border-bottom:1px solid #f0f2f4;min-height:46px;align-items:center;}
+.pt-row:last-child{border-bottom:none;}
+.pt-row.header-row{background:#f4f5f7;}
+.pt-row.header-row div{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:#7a8a99;padding:10px 16px;}
+.pt-row div{padding:12px 16px;font-size:12px;color:#1c2b3a;}
+.pt-row div.center{text-align:center;}
+.pt-row div.name{color:#3a4f63;}
+.pt-row div.val-g{text-align:center;font-weight:700;color:#2a6049;}
+.pt-row div.val-r{text-align:center;font-weight:700;color:#8b1a1a;}
+.pt-row div.val-y{text-align:center;font-weight:700;color:#7a5200;}
+.pt-row div.val-n{text-align:center;font-weight:400;color:#aab4c0;}
+.pt-row div.status-col{padding:12px 16px;}
+
+/* FOOTER */
+.footer{margin-top:48px;padding-top:14px;border-top:1px solid #dde1e7;display:flex;justify-content:space-between;font-size:11px;color:#aab4c0;}
+
+@media(max-width:860px){
+  .estado-grid,.plan-grid{grid-template-columns:1fr 1fr;}
+  .brechas-grid{grid-template-columns:1fr;}
+  .funnel-step{grid-template-columns:160px 1fr auto;}
+  .pt-row{grid-template-columns:1fr 60px 60px 60px 90px;}
+}
+@media(max-width:540px){
+  .estado-grid,.plan-grid,.brechas-grid{grid-template-columns:1fr;}
+  .page{padding:24px 16px 48px;}
+  .funnel-step{grid-template-columns:1fr;}
+  .fs-name{border-right:none;border-bottom:1px solid #f0f2f4;}
+  .fs-right{border-left:none;border-top:1px solid #f0f2f4;text-align:left;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <h1>Enfoque en Ventas — Junio 2026</h1>
+      <p>Basado en datos de mayo S3–S6 · Mes de cierre de OKRs</p>
+    </div>
+    <div class="header-right">
+      <b>Cierre: 30 jun 2026</b>
+      <span>3 semanas restantes</span>
+    </div>
+  </div>
+
+
+  <!-- ESTADO ACTUAL -->
+  <div class="sec">Estado actual del eje venta</div>
+  <div class="estado-grid">
+
+    <div class="e-card">
+      <div class="ec-label">Leads generados / semana</div>
+      <div class="ec-val g">3.215</div>
+      <div class="ec-ref">Meta 3.200 · Base 2.916</div>
+      <div class="ec-note">Entrada del funnel asegurada. El volumen no es el problema.</div>
+    </div>
+
+    <div class="e-card">
+      <div class="ec-label">Conv. Lead → SQL Venta</div>
+      <div class="ec-val r">4,9%</div>
+      <div class="ec-ref">Meta 10% · Base 5,6%</div>
+      <div class="ec-note">Por debajo del baseline. El embudo pierde volumen en este paso.</div>
+    </div>
+
+    <div class="e-card">
+      <div class="ec-label">Citas de venta efectivas</div>
+      <div class="ec-val g">22,9%</div>
+      <div class="ec-ref">Meta 20% · Base 10,4%</div>
+      <div class="ec-note">Punto más fuerte del eje. Quien llega a cita, compra.</div>
+    </div>
+
+    <div class="e-card">
+      <div class="ec-label">Conv. Vta / Oportunidades</div>
+      <div class="ec-val y">43%</div>
+      <div class="ec-ref">Meta 45% · Base 42%</div>
+      <div class="ec-note">Mejora marginal. Falta 2 pts para cerrar la meta.</div>
+    </div>
+
+    <div class="e-card">
+      <div class="ec-label">Lead VPP → SQL</div>
+      <div class="ec-val g">15,7%</div>
+      <div class="ec-ref">Meta 15% · Base 9,8%</div>
+      <div class="ec-note">Única palanca que cumple su meta. El segmento VPP funciona.</div>
+    </div>
+
+    <div class="e-card">
+      <div class="ec-label">Lead SQL + Financiamiento</div>
+      <div class="ec-val r">5,4%</div>
+      <div class="ec-ref">Meta 14% · Base 9,1%</div>
+      <div class="ec-note">Mayor brecha del eje. Regresó por debajo del baseline.</div>
+    </div>
+
+  </div>
+
+
+  <!-- FUNNEL -->
+  <div class="sec" style="margin-top:36px;">Funnel de ventas · Mayo 2026</div>
+  <div class="funnel-wrap">
+    <div class="funnel-head">Trayectoria Lead → Venta <span>· El color indica estado vs. meta</span></div>
+    <div class="funnel-body">
+
+      <div class="funnel-step step-ok">
+        <div class="fs-name">Leads generados / sem</div>
+        <div class="fs-bar-wrap">
+          <div class="fs-track">
+            <div class="fs-fill g" style="width:100%"></div>
+            <div class="fs-meta-line" style="left:99.6%;"></div>
+          </div>
+        </div>
+        <div class="fs-right">
+          <div class="fsr-val" style="color:#2a6049;">~3.215</div>
+          <div class="fsr-meta">Meta 3.200 / sem</div>
+          <div class="fsr-note"><span class="tag t-g">Cumple</span></div>
+        </div>
+      </div>
+
+      <div class="funnel-step step-ok">
+        <div class="fs-name">Contactabilidad global</div>
+        <div class="fs-bar-wrap">
+          <div class="fs-track">
+            <div class="fs-fill g" style="width:87.4%"></div>
+            <div class="fs-meta-line" style="left:70%;"></div>
+          </div>
+        </div>
+        <div class="fs-right">
+          <div class="fsr-val" style="color:#2a6049;">87,4%</div>
+          <div class="fsr-meta">Meta 70%</div>
+          <div class="fsr-note"><span class="tag t-g">+17 pts sobre meta</span></div>
+        </div>
+      </div>
+
+      <div class="funnel-step step-warn">
+        <div class="fs-name">Citas de inspección completadas</div>
+        <div class="fs-bar-wrap">
+          <div class="fs-track">
+            <div class="fs-fill y" style="width:33.3%"></div>
+            <div class="fs-meta-line" style="left:40%;"></div>
+          </div>
+        </div>
+        <div class="fs-right">
+          <div class="fsr-val" style="color:#7a5200;">33,3%</div>
+          <div class="fsr-meta">Meta 40%</div>
+          <div class="fsr-note"><span class="tag t-y">−6,7 pts</span></div>
+        </div>
+      </div>
+
+      <div class="funnel-step step-bad">
+        <div class="fs-name">Conv. Lead → SQL Venta</div>
+        <div class="fs-bar-wrap">
+          <div class="fs-track">
+            <div class="fs-fill r" style="width:49%"></div>
+            <div class="fs-meta-line" style="left:100%;"></div>
+          </div>
+        </div>
+        <div class="fs-right">
+          <div class="fsr-val" style="color:#8b1a1a;">4,9%</div>
+          <div class="fsr-meta">Meta 10%</div>
+          <div class="fsr-note"><span class="tag t-r">50% del objetivo</span></div>
+        </div>
+      </div>
+
+      <div class="funnel-step step-ok">
+        <div class="fs-name">Citas de venta efectivas</div>
+        <div class="fs-bar-wrap">
+          <div class="fs-track">
+            <div class="fs-fill g" style="width:100%"></div>
+            <div class="fs-meta-line" style="left:87%;"></div>
+          </div>
+        </div>
+        <div class="fs-right">
+          <div class="fsr-val" style="color:#2a6049;">22,9%</div>
+          <div class="fsr-meta">Meta 20%</div>
+          <div class="fsr-note"><span class="tag t-g">+2,9 pts</span></div>
+        </div>
+      </div>
+
+      <div class="funnel-step step-warn">
+        <div class="fs-name">Conv. Vta / Oportunidades</div>
+        <div class="fs-bar-wrap">
+          <div class="fs-track">
+            <div class="fs-fill y" style="width:43%"></div>
+            <div class="fs-meta-line" style="left:45%;"></div>
+          </div>
+        </div>
+        <div class="fs-right">
+          <div class="fsr-val" style="color:#7a5200;">43%</div>
+          <div class="fsr-meta">Meta 45%</div>
+          <div class="fsr-note"><span class="tag t-y">−2 pts</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DIAGNÓSTICO -->
+  <div style="background:#fff;border:1px solid #dde1e7;border-radius:6px;padding:18px 24px;margin-top:10px;display:flex;gap:16px;align-items:flex-start;">
+    <div style="width:3px;border-radius:2px;background:#b07800;flex-shrink:0;align-self:stretch;"></div>
+    <div>
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:#7a5200;margin-bottom:5px;">Diagnóstico del funnel</div>
+      <p style="font-size:12px;color:#3a4f63;line-height:1.7;">El funnel <b>no tiene problema de entrada</b> (leads y contactabilidad sobre meta). La fuga ocurre en dos pasos: <b>(1)</b> la tasa de citas de inspección completadas no llega al 40%, reduciendo el pool que avanza al siguiente paso; y <b>(2)</b> la conversión Lead → SQL está al 50% de su meta, siendo el financiamiento el principal inhibidor. Quien llega a cita de venta, compra — la palanca está en llevar más leads calificados hasta ese punto.</p>
+    </div>
+  </div>
+
+
+  <!-- BRECHAS CRÍTICAS -->
+  <div class="sec">Las 3 brechas que definen el cierre de junio</div>
+  <div class="brechas-grid">
+
+    <div class="b-card">
+      <div class="bc-top">
+        <div>
+          <div class="bc-title">Financiamiento — la brecha más grande</div>
+          <div class="bc-sub">Palanca V1.3 · Lead SQL + Financiamiento</div>
+        </div>
+        <div class="bc-nums">
+          <div class="bc-num"><div class="bv" style="color:#7a8a99;font-size:14px;">9,1%</div><div class="bl">Base</div></div>
+          <div class="bc-num"><div class="bv" style="color:#8b1a1a;">5,4%</div><div class="bl">Mayo</div></div>
+          <div class="bc-num"><div class="bv" style="color:#7a8a99;font-size:14px;">14%</div><div class="bl">Meta</div></div>
+        </div>
+      </div>
+      <div class="b-bar-track"><div class="b-bar-fill" style="width:38.6%;background:#8b1a1a;border-radius:2px;height:5px;"></div></div>
+      <div style="font-size:10px;color:#8b1a1a;margin-top:4px;">38,6% de cumplimiento · regresó por debajo del baseline</div>
+      <div class="bc-action"><b>Acción inmediata:</b> Diseñar propuesta comercial específica para el segmento financiamiento en S7 (esta semana). Definir tasa, plazo o beneficio diferencial que active el cierre. Sin esto, V1.3 no se mueve.</div>
+    </div>
+
+    <div class="b-card">
+      <div class="bc-top">
+        <div>
+          <div class="bc-title">Citas de inspección — cuello de botella central</div>
+          <div class="bc-sub">OKR C2 · % leads que completan cita</div>
+        </div>
+        <div class="bc-nums">
+          <div class="bc-num"><div class="bv" style="color:#7a8a99;font-size:14px;">32%</div><div class="bl">Base</div></div>
+          <div class="bc-num"><div class="bv" style="color:#7a5200;">33,3%</div><div class="bl">Mayo</div></div>
+          <div class="bc-num"><div class="bv" style="color:#7a8a99;font-size:14px;">40%</div><div class="bl">Meta</div></div>
+        </div>
+      </div>
+      <div class="b-bar-track"><div class="b-bar-fill" style="width:33.3%;background:#b07800;border-radius:2px;height:5px;"></div></div>
+      <div style="font-size:10px;color:#7a5200;margin-top:4px;">Apenas avanzó 1,3 pts desde el baseline · protocolos de llamadas en 0%</div>
+      <div class="bc-action"><b>Acción inmediata:</b> Iniciar capacitación de protocolos de llamadas esta semana (hoy en 0%). Incorporar script de confirmación de cita y seguimiento de no asistentes. Cada punto porcentual aquí alimenta todo el funnel inferior.</div>
+    </div>
+
+    <div class="b-card">
+      <div class="bc-top">
+        <div>
+          <div class="bc-title">Automatización — palancas que no arrancaron</div>
+          <div class="bc-sub">V2.1 / V2.2 / V2.3 · Flujos de confirmación y recordatorio</div>
+        </div>
+        <div class="bc-nums">
+          <div class="bc-num"><div class="bv" style="color:#8b1a1a;">0%</div><div class="bl">Mayo</div></div>
+          <div class="bc-num"><div class="bv" style="color:#7a8a99;font-size:14px;">100%</div><div class="bl">Meta</div></div>
+        </div>
+      </div>
+      <div class="b-bar-track"><div class="b-bar-fill" style="width:0%;background:#8b1a1a;border-radius:2px;height:5px;"></div></div>
+      <div style="font-size:10px;color:#8b1a1a;margin-top:4px;">Confirmación, recordatorio y motivos de cancelación en 0% · todo mayo sin inicio</div>
+      <div class="bc-action"><b>Acción inmediata:</b> Definir en S7 cuál de las tres se puede activar más rápido (quick win). Aunque sea el recordatorio por WhatsApp o email, reduce no-shows y mejora la tasa de citas efectivas sin costo operacional adicional.</div>
+    </div>
+
+    <div class="b-card">
+      <div class="bc-top">
+        <div>
+          <div class="bc-title">Capacitación FFVV — la palanca de conversión final</div>
+          <div class="bc-sub">V3.3 / V3.4 · Modelo de atención y negociación</div>
+        </div>
+        <div class="bc-nums">
+          <div class="bc-num"><div class="bv" style="color:#7a5200;">10%</div><div class="bl">Atención</div></div>
+          <div class="bc-num"><div class="bv" style="color:#8b1a1a;">0%</div><div class="bl">Negoc.</div></div>
+          <div class="bc-num"><div class="bv" style="color:#7a8a99;font-size:14px;">100%</div><div class="bl">Meta</div></div>
+        </div>
+      </div>
+      <div class="b-bar-track"><div class="b-bar-fill" style="width:5%;background:#b07800;border-radius:2px;height:5px;"></div></div>
+      <div style="font-size:10px;color:#7a5200;margin-top:4px;">La conversión Vta/Oportunidades está en 43% vs. meta 45% — la FFVV es la variable de cierre</div>
+      <div class="bc-action"><b>Acción inmediata:</b> Priorizar las sucursales con menor conversión para el plan de capacitación. Con Pole Position ya en 31% (sobre meta), el diferencial lo pone la negociación en el piso.</div>
+    </div>
+
+  </div>
+
+
+  <!-- PALANCAS DETALLE -->
+  <div class="sec">Estado de palancas · Eje Venta</div>
+  <div class="palancas-table">
+    <div class="pt-row header-row">
+      <div>Palanca</div>
+      <div class="center">Base</div>
+      <div class="center">Mayo</div>
+      <div class="center">Meta</div>
+      <div>Estado</div>
+    </div>
+    <div class="pt-row">
+      <div class="name">V1.1 · Lead con VPP → SQL</div>
+      <div class="center" style="color:#7a8a99;">9,81%</div>
+      <div class="val-g">15,7%</div>
+      <div class="center" style="color:#7a8a99;">15%</div>
+      <div><span class="tag t-g">Cumple</span></div>
+    </div>
+    <div class="pt-row">
+      <div class="name">V1.2 · SQL VPP flujo exclusivo</div>
+      <div class="center" style="color:#7a8a99;">16,8%</div>
+      <div class="val-y">24,1%</div>
+      <div class="center" style="color:#7a8a99;">25%</div>
+      <div><span class="tag t-y">−0,9 pts</span></div>
+    </div>
+    <div class="pt-row">
+      <div class="name">V1.3 · Lead SQL + Financiamiento</div>
+      <div class="center" style="color:#7a8a99;">9,1%</div>
+      <div class="val-r">5,4%</div>
+      <div class="center" style="color:#7a8a99;">14%</div>
+      <div><span class="tag t-r">Crítico</span></div>
+    </div>
+    <div class="pt-row">
+      <div class="name">V1.4 · Política comercial VPP</div>
+      <div class="center" style="color:#7a8a99;">0%</div>
+      <div class="val-r">15%</div>
+      <div class="center" style="color:#7a8a99;">100%</div>
+      <div><span class="tag t-r">Sin avance real</span></div>
+    </div>
+    <div class="pt-row">
+      <div class="name">V2 · Citas de venta efectivas</div>
+      <div class="center" style="color:#7a8a99;">10,4%</div>
+      <div class="val-g">22,9%</div>
+      <div class="center" style="color:#7a8a99;">20%</div>
+      <div><span class="tag t-g">Cumple</span></div>
+    </div>
+    <div class="pt-row">
+      <div class="name">V2.1–V2.3 · Automatización citas</div>
+      <div class="center" style="color:#7a8a99;">0%</div>
+      <div class="val-r">0%</div>
+      <div class="center" style="color:#7a8a99;">100%</div>
+      <div><span class="tag t-r">Sin inicio</span></div>
+    </div>
+    <div class="pt-row">
+      <div class="name">V2.4 · Expansión sucursales</div>
+      <div class="center" style="color:#7a8a99;">0%</div>
+      <div class="val-y">50%</div>
+      <div class="center" style="color:#7a8a99;">100%</div>
+      <div><span class="tag t-y">En proceso</span></div>
+    </div>
+    <div class="pt-row">
+      <div class="name">V3.1 · Pole Position + Punteros</div>
+      <div class="center" style="color:#7a8a99;">—</div>
+      <div class="val-g">31%</div>
+      <div class="center" style="color:#7a8a99;">30%</div>
+      <div><span class="tag t-g">Cumple</span></div>
+    </div>
+    <div class="pt-row">
+      <div class="name">V3.3 · FFVV capacitada — atención</div>
+      <div class="center" style="color:#7a8a99;">0%</div>
+      <div class="val-r">10%</div>
+      <div class="center" style="color:#7a8a99;">100%</div>
+      <div><span class="tag t-r">Insuficiente</span></div>
+    </div>
+    <div class="pt-row">
+      <div class="name">V3.4 · FFVV capacitada — negociación</div>
+      <div class="center" style="color:#7a8a99;">0%</div>
+      <div class="val-r">0%</div>
+      <div class="center" style="color:#7a8a99;">100%</div>
+      <div><span class="tag t-r">Sin inicio</span></div>
+    </div>
+  </div>
+
+
+  <!-- PLAN SEMANA A SEMANA -->
+  <div class="sec">Plan de acción · Junio semana a semana</div>
+  <div class="plan-grid">
+
+    <div class="plan-week">
+      <div class="pw-head" style="background:#f5e6e6;">
+        <div class="pw-period" style="color:#8b1a1a;">S7 · Esta semana</div>
+        <div class="pw-date">02 – 08 jun</div>
+      </div>
+      <div class="pw-body">
+        <div class="pw-item">
+          <div class="pw-dot" style="background:#8b1a1a;"></div>
+          <p><b>Propuesta comercial financiamiento</b>Definir tasa, plazo o incentivo para activar V1.3.</p>
+        </div>
+        <div class="pw-item">
+          <div class="pw-dot" style="background:#8b1a1a;"></div>
+          <p><b>Quick win automatización</b>Activar al menos el recordatorio de cita (WhatsApp o email).</p>
+        </div>
+        <div class="pw-item">
+          <div class="pw-dot" style="background:#8b1a1a;"></div>
+          <p><b>Inicio capacitación protocolos</b>Arrancar con las sucursales de menor tasa de cita completada.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-week">
+      <div class="pw-head" style="background:#f5edda;">
+        <div class="pw-period" style="color:#7a5200;">S8 · Ejecución</div>
+        <div class="pw-date">09 – 15 jun</div>
+      </div>
+      <div class="pw-body">
+        <div class="pw-item">
+          <div class="pw-dot" style="background:#b07800;"></div>
+          <p><b>Lanzar oferta financiamiento</b>Activar campaña interna hacia el equipo comercial.</p>
+        </div>
+        <div class="pw-item">
+          <div class="pw-dot" style="background:#b07800;"></div>
+          <p><b>Capacitación negociación FFVV</b>Primera sesión con sucursales prioritarias.</p>
+        </div>
+        <div class="pw-item">
+          <div class="pw-dot" style="background:#b07800;"></div>
+          <p><b>Cerrar V1.2 VPP</b>24,1% → 25%. Revisar pipeline VPP y activar flujo de cadencia.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-week">
+      <div class="pw-head" style="background:#f4f5f7;">
+        <div class="pw-period">S9 · Revisión mid-month</div>
+        <div class="pw-date">16 – 22 jun</div>
+      </div>
+      <div class="pw-body">
+        <div class="pw-item">
+          <div class="pw-dot" style="background:#5a6a7a;"></div>
+          <p><b>Medir impacto financiamiento</b>Si V1.3 no subió, redefinir propuesta o canal.</p>
+        </div>
+        <div class="pw-item">
+          <div class="pw-dot" style="background:#5a6a7a;"></div>
+          <p><b>Revisión citas completadas</b>Medir si el protocolo movió la tasa del 33% al 40%.</p>
+        </div>
+        <div class="pw-item">
+          <div class="pw-dot" style="background:#5a6a7a;"></div>
+          <p><b>Expansión sucursales V2.4</b>Pasar del 50% actual al 100% antes del cierre.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="plan-week">
+      <div class="pw-head" style="background:#e6f0ec;">
+        <div class="pw-period" style="color:#2a6049;">S10 · Cierre</div>
+        <div class="pw-date">23 – 30 jun</div>
+      </div>
+      <div class="pw-body">
+        <div class="pw-item">
+          <div class="pw-dot" style="background:#2a6049;"></div>
+          <p><b>Push de pipeline final</b>Foco en oportunidades abiertas que no cerraron en S8–S9.</p>
+        </div>
+        <div class="pw-item">
+          <div class="pw-dot" style="background:#2a6049;"></div>
+          <p><b>Consolidar Vta/Oportunidades</b>Llevar el 43% al 45% meta con seguimiento diario de jefes de sucursal.</p>
+        </div>
+        <div class="pw-item">
+          <div class="pw-dot" style="background:#2a6049;"></div>
+          <p><b>Sostener VPP y citas efectivas</b>Las palancas que funcionan deben mantenerse activas hasta el 30.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <span>Enfoque Ventas · Junio 2026 · Fuente: Seguimiento_por_Squad (2).pdf</span>
+    <span>AmericaR · 03 junio 2026</span>
+  </div>
+
+</div>
+</body>
+</html>
