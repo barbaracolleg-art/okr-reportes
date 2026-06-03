@@ -234,129 +234,121 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f4f5f7;color:#1c2b3a;fo
 
   <!-- INDICADORES POR EJE -->
   <div class="sec-title" style="margin-top:36px;">Indicadores clave · Mayo 2026</div>
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start;">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto 1fr 1fr;gap:10px 16px;">
 
-    <!-- ── COLUMNA EJE COMPRA ── -->
-    <div>
-      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#1c2b3a;background:#e8ecf0;border-radius:4px;padding:6px 12px;margin-bottom:10px;">Eje Compra</div>
+    <!-- fila 0: encabezados -->
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#1c2b3a;background:#e8ecf0;border-radius:4px;padding:6px 12px;">Eje Compra</div>
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#1c2b3a;background:#e8ecf0;border-radius:4px;padding:6px 12px;">Preparación</div>
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#1c2b3a;background:#e8ecf0;border-radius:4px;padding:6px 12px;">Eje Venta</div>
 
-      <div class="kpi" style="margin-bottom:12px;">
-        <div class="kpi-tag">Gestión de Leads</div>
-        <div class="kpi-name">Contactabilidad global del pool de leads</div>
-        <div class="kpi-val good">87,4%</div>
-        <div class="kpi-refs"><span>Base <b>53%</b></span><span>Meta <b>70%</b></span></div>
-        <div class="bar-wrap">
-          <div class="bar-labels"><span>0%</span><span>Meta 70%</span><span>100%</span></div>
-          <div class="bar-track"><div class="bar-fill fill-good" style="width:87.4%"></div></div>
-        </div>
-        <div class="spark">
-          <div class="sp-col"><div class="sp-bar" style="height:22px;background:#c8d9d3;"></div><div class="sp-v" style="color:#7a8a99;">60%</div><div class="sp-l">S3</div></div>
-          <div class="sp-col"><div class="sp-bar" style="height:19px;background:#c8d9d3;"></div><div class="sp-v" style="color:#7a8a99;">57%</div><div class="sp-l">S4</div></div>
-          <div class="sp-col"><div class="sp-bar" style="height:38px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">97%</div><div class="sp-l">S5</div></div>
-          <div class="sp-col"><div class="sp-bar" style="height:33px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">87%</div><div class="sp-l">S6</div></div>
-        </div>
-        <div style="font-size:10px;color:#aab4c0;background:#f8f9fa;border-radius:4px;padding:5px 8px;margin-bottom:8px;">
-          T. primer contacto &nbsp;·&nbsp; Base <b style="color:#7a8a99;">8 h</b> &nbsp;·&nbsp; Meta <b style="color:#7a8a99;">&lt;6 h</b> &nbsp;·&nbsp; Mayo <b style="color:#2a6049;">0,61 h ✓</b>
-        </div>
-        <span class="status s-good">+17 pts sobre meta</span>
+    <!-- fila 1: primera tarjeta de cada eje -->
+    <div class="kpi">
+      <div class="kpi-tag">Gestión de Leads</div>
+      <div class="kpi-name">Contactabilidad global del pool de leads</div>
+      <div class="kpi-val good">87,4%</div>
+      <div class="kpi-refs"><span>Base <b>53%</b></span><span>Meta <b>70%</b></span></div>
+      <div class="bar-wrap">
+        <div class="bar-labels"><span>0%</span><span>Meta 70%</span><span>100%</span></div>
+        <div class="bar-track"><div class="bar-fill fill-good" style="width:87.4%"></div></div>
       </div>
-
-      <div class="kpi">
-        <div class="kpi-tag">Eje Compra</div>
-        <div class="kpi-name">Conversión end-to-end Lead → Compra</div>
-        <div class="kpi-val good">4,1%</div>
-        <div class="kpi-refs"><span>Base <b>2,0%</b></span><span>Meta <b>3,5%</b></span></div>
-        <div class="bar-wrap">
-          <div class="bar-labels"><span>0%</span><span>Meta 3,5%</span><span>8%</span></div>
-          <div class="bar-track"><div class="bar-fill fill-good" style="width:51%"></div></div>
-        </div>
-        <div class="spark">
-          <div class="sp-col"><div class="sp-bar" style="height:28px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">5,7%</div><div class="sp-l">S3</div></div>
-          <div class="sp-col"><div class="sp-bar" style="height:38px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">7,8%</div><div class="sp-l">S4</div></div>
-          <div class="sp-col"><div class="sp-bar" style="height:22px;background:#b07800;"></div><div class="sp-v" style="color:#b07800;">4,5%</div><div class="sp-l">S5</div></div>
-          <div class="sp-col"><div class="sp-bar" style="height:18px;background:#b07800;"></div><div class="sp-v" style="color:#b07800;">4,1%</div><div class="sp-l">S6</div></div>
-        </div>
-        <span class="status s-good">+0,6 pts sobre meta</span>
+      <div class="spark">
+        <div class="sp-col"><div class="sp-bar" style="height:22px;background:#c8d9d3;"></div><div class="sp-v" style="color:#7a8a99;">60%</div><div class="sp-l">S3</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:19px;background:#c8d9d3;"></div><div class="sp-v" style="color:#7a8a99;">57%</div><div class="sp-l">S4</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:38px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">97%</div><div class="sp-l">S5</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:33px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">87%</div><div class="sp-l">S6</div></div>
       </div>
+      <div style="font-size:10px;color:#aab4c0;background:#f8f9fa;border-radius:4px;padding:5px 8px;margin-bottom:8px;">
+        T. primer contacto &nbsp;·&nbsp; Base <b style="color:#7a8a99;">8 h</b> &nbsp;·&nbsp; Meta <b style="color:#7a8a99;">&lt;6 h</b> &nbsp;·&nbsp; Mayo <b style="color:#2a6049;">0,61 h ✓</b>
+      </div>
+      <span class="status s-good">+17 pts sobre meta</span>
     </div>
 
-    <!-- ── COLUMNA PREPARACIÓN ── -->
-    <div>
-      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#1c2b3a;background:#e8ecf0;border-radius:4px;padding:6px 12px;margin-bottom:10px;">Preparación</div>
-
-      <div class="kpi" style="margin-bottom:12px;">
-        <div class="kpi-tag">Preparación</div>
-        <div class="kpi-name">% Stock publicado con foto Impel (Tier 1/2)</div>
-        <div class="kpi-val bad">61,4%</div>
-        <div class="kpi-refs"><span>Base <b>61,5%</b></span><span>Meta <b>95%</b></span></div>
-        <div class="bar-wrap">
-          <div class="bar-labels"><span>0%</span><span>Meta 95%</span><span>100%</span></div>
-          <div class="bar-track"><div class="bar-fill fill-bad" style="width:61.4%"></div></div>
-        </div>
-        <div class="spark">
-          <div class="sp-col"><div class="sp-bar" style="height:20px;background:#8b1a1a;"></div><div class="sp-v" style="color:#8b1a1a;">58%</div><div class="sp-l">S3</div></div>
-          <div class="sp-col"><div class="sp-bar" style="height:22px;background:#8b1a1a;"></div><div class="sp-v" style="color:#8b1a1a;">59%</div><div class="sp-l">S4</div></div>
-          <div class="sp-col"><div class="sp-bar" style="height:23px;background:#8b1a1a;"></div><div class="sp-v" style="color:#8b1a1a;">61%</div><div class="sp-l">S5</div></div>
-          <div class="sp-col"><div class="sp-bar" style="height:25px;background:#8b1a1a;"></div><div class="sp-v" style="color:#8b1a1a;">64%</div><div class="sp-l">S6</div></div>
-        </div>
-        <span class="status s-bad">Sin avance — igual al baseline</span>
+    <div class="kpi">
+      <div class="kpi-tag">Preparación</div>
+      <div class="kpi-name">% Stock publicado con foto Impel (Tier 1/2)</div>
+      <div class="kpi-val bad">61,4%</div>
+      <div class="kpi-refs"><span>Base <b>61,5%</b></span><span>Meta <b>95%</b></span></div>
+      <div class="bar-wrap">
+        <div class="bar-labels"><span>0%</span><span>Meta 95%</span><span>100%</span></div>
+        <div class="bar-track"><div class="bar-fill fill-bad" style="width:61.4%"></div></div>
       </div>
-
-      <div class="kpi">
-        <div class="kpi-tag">Preparación</div>
-        <div class="kpi-name">% Inventario total publicado en vitrina</div>
-        <div class="kpi-val good">91,2%</div>
-        <div class="kpi-refs"><span>Base <b>79,2%</b></span><span>Meta <b>90%</b></span></div>
-        <div class="bar-wrap">
-          <div class="bar-labels"><span>0%</span><span>Meta 90%</span><span>100%</span></div>
-          <div class="bar-track"><div class="bar-fill fill-good" style="width:91.2%"></div></div>
-        </div>
-        <div class="spark">
-          <div class="sp-col"><div class="sp-bar" style="height:36px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">91%</div><div class="sp-l">S3</div></div>
-          <div class="sp-col"><div class="sp-bar" style="height:37px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">91%</div><div class="sp-l">S4</div></div>
-          <div class="sp-col"><div class="sp-bar" style="height:36px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">91%</div><div class="sp-l">S5</div></div>
-          <div class="sp-col"><div class="sp-bar" style="height:38px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">91%</div><div class="sp-l">S6</div></div>
-        </div>
-        <span class="status s-good">Consistente todas las semanas</span>
+      <div class="spark">
+        <div class="sp-col"><div class="sp-bar" style="height:20px;background:#8b1a1a;"></div><div class="sp-v" style="color:#8b1a1a;">58%</div><div class="sp-l">S3</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:22px;background:#8b1a1a;"></div><div class="sp-v" style="color:#8b1a1a;">59%</div><div class="sp-l">S4</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:23px;background:#8b1a1a;"></div><div class="sp-v" style="color:#8b1a1a;">61%</div><div class="sp-l">S5</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:25px;background:#8b1a1a;"></div><div class="sp-v" style="color:#8b1a1a;">64%</div><div class="sp-l">S6</div></div>
       </div>
+      <span class="status s-bad">Sin avance — igual al baseline</span>
     </div>
 
-    <!-- ── COLUMNA EJE VENTA ── -->
-    <div>
-      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#1c2b3a;background:#e8ecf0;border-radius:4px;padding:6px 12px;margin-bottom:10px;">Eje Venta</div>
-
-      <div class="kpi" style="margin-bottom:12px;">
-        <div class="kpi-tag">Eje Venta</div>
-        <div class="kpi-name">Conversión Lead → Venta end-to-end</div>
-        <div class="kpi-val warn">4,9%</div>
-        <div class="kpi-refs"><span>Base <b>4,1%</b></span><span>Meta <b>6%</b></span></div>
-        <div class="bar-wrap">
-          <div class="bar-labels"><span>0%</span><span>Meta 6%</span><span>10%</span></div>
-          <div class="bar-track"><div class="bar-fill fill-warn" style="width:49%"></div></div>
-        </div>
-        <div class="sub-rows">
-          <div class="sub-row"><span class="sr-name">Lead VPP → SQL</span><span class="sr-val g">15,7% · meta 15% ✓</span></div>
-          <div class="sub-row"><span class="sr-name">Lead SQL + Financiamiento</span><span class="sr-val r">5,4% · meta 14% ✗</span></div>
-          <div class="sub-row"><span class="sr-name">Citas de venta efectivas</span><span class="sr-val g">22,9% · meta 20% ✓</span></div>
-        </div>
-        <span class="status s-warn">-1,1 pts vs. meta — en proceso</span>
+    <div class="kpi">
+      <div class="kpi-tag">Eje Venta</div>
+      <div class="kpi-name">Conversión Lead → Venta end-to-end</div>
+      <div class="kpi-val warn">4,9%</div>
+      <div class="kpi-refs"><span>Base <b>4,1%</b></span><span>Meta <b>6%</b></span></div>
+      <div class="bar-wrap">
+        <div class="bar-labels"><span>0%</span><span>Meta 6%</span><span>10%</span></div>
+        <div class="bar-track"><div class="bar-fill fill-warn" style="width:49%"></div></div>
       </div>
-
-      <div class="kpi" style="border:1px solid #b8d4c8;background:#f0f7f4;">
-        <div class="kpi-tag" style="color:#2a6049;">Captación Digital — Eje Venta</div>
-        <div class="kpi-name">Generación semanal de leads</div>
-        <div class="kpi-val good">3.215</div>
-        <div class="kpi-refs"><span>Base <b>2.916 / sem</b></span><span>Meta <b>3.200 / sem</b></span></div>
-        <div class="bar-wrap">
-          <div class="bar-labels"><span>0</span><span>Meta 3.200</span><span>3.500</span></div>
-          <div class="bar-track"><div class="bar-fill fill-good" style="width:91.9%"></div></div>
-        </div>
-        <div class="sub-rows" style="margin-top:10px;">
-          <div class="sub-row"><span class="sr-name">Buy process desde ficha</span><span class="sr-val y">6% · meta 7%</span></div>
-          <div class="sub-row"><span class="sr-name">Buy process desde catálogo</span><span class="sr-val y">3% · meta 4%</span></div>
-        </div>
-        <span class="status s-good">+15 leads / sem sobre meta ✓</span>
+      <div class="sub-rows">
+        <div class="sub-row"><span class="sr-name">Lead VPP → SQL</span><span class="sr-val g">15,7% · meta 15% ✓</span></div>
+        <div class="sub-row"><span class="sr-name">Lead SQL + Financiamiento</span><span class="sr-val r">5,4% · meta 14% ✗</span></div>
+        <div class="sub-row"><span class="sr-name">Citas de venta efectivas</span><span class="sr-val g">22,9% · meta 20% ✓</span></div>
       </div>
+      <span class="status s-warn">-1,1 pts vs. meta — en proceso</span>
+    </div>
+
+    <!-- fila 2: segunda tarjeta de cada eje -->
+    <div class="kpi">
+      <div class="kpi-tag">Eje Compra</div>
+      <div class="kpi-name">Conversión end-to-end Lead → Compra</div>
+      <div class="kpi-val good">4,1%</div>
+      <div class="kpi-refs"><span>Base <b>2,0%</b></span><span>Meta <b>3,5%</b></span></div>
+      <div class="bar-wrap">
+        <div class="bar-labels"><span>0%</span><span>Meta 3,5%</span><span>8%</span></div>
+        <div class="bar-track"><div class="bar-fill fill-good" style="width:51%"></div></div>
+      </div>
+      <div class="spark">
+        <div class="sp-col"><div class="sp-bar" style="height:28px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">5,7%</div><div class="sp-l">S3</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:38px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">7,8%</div><div class="sp-l">S4</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:22px;background:#b07800;"></div><div class="sp-v" style="color:#b07800;">4,5%</div><div class="sp-l">S5</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:18px;background:#b07800;"></div><div class="sp-v" style="color:#b07800;">4,1%</div><div class="sp-l">S6</div></div>
+      </div>
+      <span class="status s-good">+0,6 pts sobre meta</span>
+    </div>
+
+    <div class="kpi">
+      <div class="kpi-tag">Preparación</div>
+      <div class="kpi-name">% Inventario total publicado en vitrina</div>
+      <div class="kpi-val good">91,2%</div>
+      <div class="kpi-refs"><span>Base <b>79,2%</b></span><span>Meta <b>90%</b></span></div>
+      <div class="bar-wrap">
+        <div class="bar-labels"><span>0%</span><span>Meta 90%</span><span>100%</span></div>
+        <div class="bar-track"><div class="bar-fill fill-good" style="width:91.2%"></div></div>
+      </div>
+      <div class="spark">
+        <div class="sp-col"><div class="sp-bar" style="height:36px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">91%</div><div class="sp-l">S3</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:37px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">91%</div><div class="sp-l">S4</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:36px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">91%</div><div class="sp-l">S5</div></div>
+        <div class="sp-col"><div class="sp-bar" style="height:38px;background:#2a6049;"></div><div class="sp-v" style="color:#2a6049;">91%</div><div class="sp-l">S6</div></div>
+      </div>
+      <span class="status s-good">Consistente todas las semanas</span>
+    </div>
+
+    <div class="kpi" style="border:1px solid #b8d4c8;background:#f0f7f4;">
+      <div class="kpi-tag" style="color:#2a6049;">Captación Digital — Eje Venta</div>
+      <div class="kpi-name">Generación semanal de leads</div>
+      <div class="kpi-val good">3.215</div>
+      <div class="kpi-refs"><span>Base <b>2.916 / sem</b></span><span>Meta <b>3.200 / sem</b></span></div>
+      <div class="bar-wrap">
+        <div class="bar-labels"><span>0</span><span>Meta 3.200</span><span>3.500</span></div>
+        <div class="bar-track"><div class="bar-fill fill-good" style="width:91.9%"></div></div>
+      </div>
+      <div class="sub-rows" style="margin-top:10px;">
+        <div class="sub-row"><span class="sr-name">Buy process desde ficha</span><span class="sr-val y">6% · meta 7%</span></div>
+        <div class="sub-row"><span class="sr-name">Buy process desde catálogo</span><span class="sr-val y">3% · meta 4%</span></div>
+      </div>
+      <span class="status s-good">+15 leads / sem sobre meta ✓</span>
     </div>
 
   </div><!-- /indicadores por eje -->
