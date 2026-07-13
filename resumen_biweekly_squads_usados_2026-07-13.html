@@ -1,0 +1,580 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Avance Semanal — Programa Usados</title>
+<style>
+  :root {
+    --bg: #f5f3ee;
+    --surface: #ffffff;
+    --surface-2: #faf8f3;
+    --ink: #201d18;
+    --ink-muted: #6f6a5f;
+    --ink-faint: #a39d8f;
+    --line: #e4dfd2;
+    --accent: #0f5c66;
+    --good: #2f7d4f;
+    --good-soft: #e2f0e6;
+    --wip: #a5761f;
+    --wip-soft: #f2e9d6;
+
+    --squad-captacion: #1b6f74;
+    --squad-leads: #3f5590;
+    --squad-prep: #6f7a3a;
+    --squad-logistica: #9c5b34;
+    --squad-ventas: #7a4a72;
+
+    --shadow: 0 1px 2px rgba(32,29,24,0.06), 0 8px 24px -12px rgba(32,29,24,0.18);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171a;
+      --surface: #1c2024;
+      --surface-2: #202428;
+      --ink: #eae7de;
+      --ink-muted: #a19c8f;
+      --ink-faint: #6d6a62;
+      --line: #2c3136;
+      --accent: #57b8c2;
+      --good: #5fbf85;
+      --good-soft: #1c3128;
+      --wip: #d9ab52;
+      --wip-soft: #362c17;
+
+      --squad-captacion: #4fb0b6;
+      --squad-leads: #7e93cf;
+      --squad-prep: #a8b46a;
+      --squad-logistica: #d18a5c;
+      --squad-ventas: #b380ab;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14171a; --surface: #1c2024; --surface-2: #202428;
+    --ink: #eae7de; --ink-muted: #a19c8f; --ink-faint: #6d6a62; --line: #2c3136;
+    --accent: #57b8c2;
+    --good: #5fbf85; --good-soft: #1c3128;
+    --wip: #d9ab52; --wip-soft: #362c17;
+    --squad-captacion: #4fb0b6; --squad-leads: #7e93cf; --squad-prep: #a8b46a;
+    --squad-logistica: #d18a5c; --squad-ventas: #b380ab;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -12px rgba(0,0,0,0.5);
+  }
+  :root[data-theme="light"] {
+    --bg: #f5f3ee; --surface: #ffffff; --surface-2: #faf8f3;
+    --ink: #201d18; --ink-muted: #6f6a5f; --ink-faint: #a39d8f; --line: #e4dfd2;
+    --accent: #0f5c66;
+    --good: #2f7d4f; --good-soft: #e2f0e6;
+    --wip: #a5761f; --wip-soft: #f2e9d6;
+    --squad-captacion: #1b6f74; --squad-leads: #3f5590; --squad-prep: #6f7a3a;
+    --squad-logistica: #9c5b34; --squad-ventas: #7a4a72;
+    --shadow: 0 1px 2px rgba(32,29,24,0.06), 0 8px 24px -12px rgba(32,29,24,0.18);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Segoe UI", -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 { font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif; font-weight: 400; text-wrap: balance; color: var(--ink); margin: 0; }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--ink-muted);
+  }
+
+  /* ---- header ---- */
+  header.top {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 22px clamp(18px, 4vw, 48px) 0;
+  }
+  .top-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 18px; }
+  .top-row h1 { font-size: clamp(24px, 3.2vw, 32px); }
+  .top-meta { text-align: right; color: var(--ink-muted); font-size: 13px; }
+
+  nav.squadnav {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    scrollbar-width: thin;
+  }
+  nav.squadnav a {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    color: var(--ink-muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: border-color .15s ease, color .15s ease;
+  }
+  nav.squadnav a:hover { color: var(--ink); border-color: var(--ink-faint); }
+  nav.squadnav a .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--dot); }
+
+  main { max-width: 980px; margin: 0 auto; padding: 32px clamp(18px, 4vw, 48px) 80px; }
+
+  /* ---- funnel overview ---- */
+  section.overview { margin-bottom: 40px; }
+  .overview-head h2 { font-size: 20px; }
+  .overview-head p { margin: 4px 0 16px; color: var(--ink-muted); font-size: 13.5px; }
+
+  .funnel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .funnel-step {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    position: relative;
+  }
+  .funnel-step .stepdot { width: 9px; height: 9px; border-radius: 50%; background: var(--dot); display: inline-block; margin-right: 7px; }
+  .funnel-step .stepname { font-weight: 700; font-size: 13.5px; }
+  .funnel-step .stepdesc { color: var(--ink-muted); font-size: 12.5px; margin-top: 4px; }
+  @media (min-width: 700px) {
+    .funnel-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--ink-faint);
+      font-size: 14px;
+      z-index: 1;
+    }
+  }
+
+  /* ---- squad cards ---- */
+  section.squad {
+    scroll-margin-top: 130px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--dot);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 18px clamp(18px, 3vw, 28px) 22px;
+    margin-bottom: 16px;
+  }
+  .squad-head { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 6px; }
+  .squad-head h2 { font-size: 22px; display: flex; align-items: center; gap: 10px; }
+  .squad-head h2 .dot { width: 11px; height: 11px; border-radius: 50%; background: var(--dot); flex: none; }
+  .subgroup-tag {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--dot); background: color-mix(in srgb, var(--dot) 14%, transparent);
+    padding: 3px 9px; border-radius: 999px;
+  }
+  .foco {
+    color: var(--ink);
+    font-size: 13.8px;
+    margin: 8px 0 14px;
+    padding: 9px 13px;
+    background: var(--surface-2);
+    border-radius: 8px;
+    border-left: 3px solid var(--dot);
+  }
+  .foco b { color: var(--dot); font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: .06em; display: block; margin-bottom: 4px; }
+
+  .subsection { margin-top: 14px; }
+  .subsection:first-of-type { margin-top: 0; }
+  .subsection > h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-weight: 700;
+    color: var(--ink-muted);
+    font-family: "Segoe UI", sans-serif;
+    margin-bottom: 12px;
+  }
+
+  details.subsection.minor {
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--line);
+    max-width: 85%;
+  }
+  details.subsection.minor summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-weight: 700;
+    color: var(--ink-faint);
+    font-family: "Segoe UI", sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+  details.subsection.minor summary::-webkit-details-marker { display: none; }
+  details.subsection.minor summary::before {
+    content: "▸";
+    font-size: 10px;
+    transition: transform .15s ease;
+    color: var(--dot);
+  }
+  details.subsection.minor[open] summary::before { transform: rotate(90deg); }
+  details.subsection.minor summary:hover { color: var(--ink-muted); }
+  details.subsection.minor summary .count {
+    text-transform: none;
+    letter-spacing: normal;
+    font-weight: 400;
+    color: var(--ink-faint);
+  }
+  details.subsection.minor ul.initiatives { margin-top: 12px; gap: 7px; }
+  details.subsection.minor ul.initiatives li { font-size: 12.6px; color: var(--ink-muted); }
+  details.subsection.minor .chip { font-size: 9.5px; padding: 2px 7px; opacity: .85; }
+
+  details.subsection.collapsible { margin-top: 0; }
+  details.subsection.collapsible summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-weight: 700;
+    color: var(--ink-muted);
+    font-family: "Segoe UI", sans-serif;
+    margin-bottom: 12px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  details.subsection.collapsible summary::-webkit-details-marker { display: none; }
+  details.subsection.collapsible summary::before {
+    content: "▸";
+    font-size: 10px;
+    color: var(--dot);
+    transition: transform .15s ease;
+  }
+  details.subsection.collapsible[open] summary::before { transform: rotate(90deg); }
+  details.subsection.collapsible summary:hover { color: var(--ink); }
+  details.subsection.collapsible summary .count {
+    text-transform: none;
+    letter-spacing: normal;
+    font-weight: 400;
+    color: var(--ink-faint);
+  }
+  ul.ticket-list { gap: 5px; margin-top: 2px; }
+  ul.ticket-list li::before {
+    content: "✓";
+    color: var(--good);
+    font-size: 11px;
+    font-weight: 700;
+    flex: none;
+    margin-top: 1px;
+  }
+  ul.ticket-list .item-text { font-size: 12.6px; color: var(--ink-muted); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 28px; }
+  @media (max-width: 720px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* ---- initiative list ---- */
+  ul.initiatives { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+  ul.initiatives li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 13.2px;
+    color: var(--ink);
+  }
+  .chip {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin-top: 1px;
+  }
+  .chip.done { color: var(--good); background: var(--good-soft); }
+  .chip.wip { color: var(--wip); background: var(--wip-soft); }
+  ul.initiatives .item-text b { font-weight: 700; }
+  ul.initiatives .item-text .when { color: var(--ink-muted); font-size: 12.3px; }
+
+  .note-card {
+    background: var(--surface-2);
+    border: 1px dashed var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+
+  .closing {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 26px clamp(18px, 3vw, 32px);
+    margin-top: 6px;
+  }
+  .closing h2 { font-size: 21px; margin-bottom: 6px; }
+  .closing p.tag { color: var(--ink-muted); font-size: 14px; margin: 0 0 18px; }
+
+  footer.pagefoot { text-align: center; color: var(--ink-faint); font-size: 12px; padding: 26px 0 8px; }
+
+  @media (max-width: 640px) {
+    .funnel { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-row">
+    <div>
+      <div class="eyebrow">Programa Usados</div>
+      <h1>Foco e iniciativas por Squad</h1>
+    </div>
+    <div class="top-meta">Resumen ejecutivo</div>
+  </div>
+  <nav class="squadnav">
+    <a href="#captacion" style="--dot:var(--squad-captacion)"><span class="dot"></span>Captación Digital</a>
+    <a href="#leads" style="--dot:var(--squad-leads)"><span class="dot"></span>Gestión de Leads</a>
+    <a href="#preparacion" style="--dot:var(--squad-prep)"><span class="dot"></span>Preparación</a>
+    <a href="#logistica" style="--dot:var(--squad-logistica)"><span class="dot"></span>Op. Logística</a>
+    <a href="#ventas" style="--dot:var(--squad-ventas)"><span class="dot"></span>Op. Atención</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============ OVERVIEW / FUNNEL ============ -->
+  <section class="overview" id="overview" style="--dot:var(--accent)">
+    <div class="funnel">
+      <div class="funnel-step" style="--dot:var(--squad-captacion)">
+        <div class="stepname"><span class="stepdot"></span>Captación</div>
+        <div class="stepdesc">Atraer y validar clientes</div>
+      </div>
+      <div class="funnel-step" style="--dot:var(--squad-leads)">
+        <div class="stepname"><span class="stepdot"></span>Gestión de Leads</div>
+        <div class="stepdesc">Gestionar lo que llega</div>
+      </div>
+      <div class="funnel-step" style="--dot:var(--squad-prep)">
+        <div class="stepname"><span class="stepdot"></span>Preparación</div>
+        <div class="stepdesc">Publicar las unidades</div>
+      </div>
+      <div class="funnel-step" style="--dot:var(--squad-logistica)">
+        <div class="stepname"><span class="stepdot"></span>Operaciones</div>
+        <div class="stepdesc">Atender en sucursal</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CAPTACIÓN DIGITAL ============ -->
+  <section class="squad" id="captacion" style="--dot:var(--squad-captacion)">
+    <div class="squad-head">
+      <h2><span class="dot"></span>Squad Captación Digital</h2>
+      <span class="subgroup-tag">Liderazgo: Trinidad Madrigal → Paola Toledo</span>
+    </div>
+    <div class="foco"><b>Foco</b>Cerrar brechas de Confianza y Conversión del sitio, sin subir la inversión en tráfico.</div>
+
+    <div class="two-col">
+      <details class="subsection collapsible">
+        <summary>Hecho <span class="count">· mejoras implementadas en el sitio</span></summary>
+        <ul class="initiatives ticket-list">
+          <li><span class="item-text">Swipe en fotos de inspección</span></li>
+          <li><span class="item-text">Precio manual VPP en tasación (fdc MVP1)</span></li>
+          <li><span class="item-text">Mejoras de espaciados y sticky footer — PDP</span></li>
+          <li><span class="item-text">Selector de fecha de nacimiento (MVP1)</span></li>
+          <li><span class="item-text">Rediseño de stepper (MVP1)</span></li>
+          <li><span class="item-text">Sticky footer y quitar imagen (MVP1)</span></li>
+          <li><span class="item-text">Campo de kilometraje como input directo (MVP1)</span></li>
+          <li><span class="item-text">Dropdowns de listas largas reemplazados (MVP1)</span></li>
+          <li><span class="item-text">Rediseño de opciones de financiamiento (MVP1)</span></li>
+          <li><span class="item-text">Comportamiento del paginador — Catálogo</span></li>
+          <li><span class="item-text">Estilos de lujo en sticky footer — PDP autos de lujo</span></li>
+          <li><span class="item-text">Versiones de autos usados en vista lista — Catálogo</span></li>
+          <li><span class="item-text">Rediseño de pantalla de resultado de tasación (MVP1)</span></li>
+          <li><span class="item-text">Envío de link de auto — flujo de compra</span></li>
+          <li><span class="item-text">Rediseño del paso de pre aprobación (MVP1)</span></li>
+          <li><span class="item-text">Límite de tasaciones por mismo usuario</span></li>
+          <li><span class="item-text">Alerta en campo Teléfono — Tasación</span></li>
+          <li><span class="item-text">Filtros para evitar combinaciones sin stock</span></li>
+          <li><span class="item-text">Hero de catálogo optimizado</span></li>
+          <li><span class="item-text">Hero de ficha de auto optimizado</span></li>
+          <li><span class="item-text">Indicador de cantidad de fotos — galería PDP</span></li>
+          <li><span class="item-text">Revisión de comportamiento de galería — PDP</span></li>
+          <li><span class="item-text">GTM duplicado de SAIS eliminado</span></li>
+        </ul>
+      </details>
+      <div class="subsection">
+        <h3>Ventas</h3>
+        <ul class="initiatives">
+          <li><span class="chip wip">En curso</span><span class="item-text">Definir objetivo del sitio (cotización, venta o derivación) + inversión en marketplaces.</span></li>
+          <li><span class="chip wip">En curso</span><span class="item-text">Análisis de CRM, campañas e integración Insider.</span></li>
+          <li><span class="chip wip">En curso</span><span class="item-text">Análisis de conversión catálogo → ficha → cotización.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <details class="subsection minor">
+      <summary>Compra <span class="count">· 4</span></summary>
+      <ul class="initiatives">
+        <li><span class="chip done">Hecho</span><span class="item-text">Validación del cliente antes del lead.</span></li>
+        <li><span class="chip done">Hecho</span><span class="item-text">Fusión de pasos formulario, ficha y catálogo.</span></li>
+        <li><span class="chip wip">En curso</span><span class="item-text">Flujo de compra evolucionado <span class="when">· fines julio</span>; pendiente info por patente.</span></li>
+        <li><span class="chip wip">En curso</span><span class="item-text">Análisis de compras comprometido <span class="when">· fines julio</span>.</span></li>
+      </ul>
+    </details>
+  </section>
+
+  <!-- ============ GESTIÓN DE LEADS ============ -->
+  <section class="squad" id="leads" style="--dot:var(--squad-leads)">
+    <div class="squad-head">
+      <h2><span class="dot"></span>Squad de Gestión de Leads</h2>
+    </div>
+    <div class="foco"><b>Foco</b>Mejor conversión a ventas por gestión y recuperación de clientes.</div>
+
+    <div class="two-col">
+      <div class="subsection">
+        <h3>Hecho</h3>
+        <ul class="initiatives">
+          <li><span class="chip done">Hecho</span><span class="item-text">Rescate de Leads y Oportunidades (contact center, LM, Comercial). Se han realizado 12 rescates.</span></li>
+          <li><span class="chip done">Hecho</span><span class="item-text">Equipo de contact center dedicado al rescate de clientes.</span></li>
+          <li><span class="chip done">Hecho</span><span class="item-text">Cita de Venta implementada hace dos semanas en la web y en Paula.</span></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>En curso</h3>
+        <ul class="initiatives">
+          <li><span class="chip wip">En curso</span><span class="item-text">Rescate de oportunidades VPP en tasación/inspección, con precios de julio 2026.</span></li>
+          <li><span class="chip wip">En curso</span><span class="item-text">Lanzamiento <b>Captador Digital</b> y plan de seguimiento posterior <span class="when">· semana 13/07</span>.</span></li>
+          <li><span class="chip wip">En curso</span><span class="item-text">Propuesta programa <b>Vendedor Integral</b>.</span></li>
+          <li><span class="chip wip">En curso</span><span class="item-text">Gestión de renovaciones en Llaima (Carga y seguimiento, mesa constituida con Jaime y Eduardo).</span></li>
+          <li><span class="chip wip">En curso</span><span class="item-text">Depuración de bases de aprobados sin cursar para cargar en CRM y rescatar con equipo comercial.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <details class="subsection minor">
+      <summary>Compras <span class="count">· 2</span></summary>
+      <ul class="initiatives">
+        <li><span class="chip done">Hecho</span><span class="item-text">Análisis de llamados y auditorías: contactabilidad más clara.</span></li>
+        <li><span class="chip wip">En curso</span><span class="item-text">Refuerzo de supervisión del contact center externo.</span></li>
+      </ul>
+    </details>
+  </section>
+
+  <!-- ============ PREPARACIÓN ============ -->
+  <section class="squad" id="preparacion" style="--dot:var(--squad-prep)">
+    <div class="squad-head">
+      <h2><span class="dot"></span>Squad Preparación</h2>
+    </div>
+    <div class="foco"><b>Foco</b>Unidades disponibles publicadas con fotografía de calidad.</div>
+
+    <div class="two-col">
+      <div class="subsection">
+        <h3>Ya implementadas</h3>
+        <ul class="initiatives">
+          <li><span class="chip done">Hecho</span><span class="item-text">Ángulo estándar en fotos de inspección del sitio.</span></li>
+          <li><span class="chip done">Hecho</span><span class="item-text">Test Car incorporado al flujo Llaima.</span></li>
+          <li><span class="chip done">Hecho</span><span class="item-text">Seguimiento de fotografía Impel por zona.</span></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>En desarrollo</h3>
+        <ul class="initiatives">
+          <li><span class="chip wip">En curso</span><span class="item-text">Preparar unidades Alto DPS para plan de salida.</span></li>
+          <li><span class="chip wip">En curso</span><span class="item-text">Fondo IA en foto de inspección <span class="when">· producción 13/07</span>.</span></li>
+          <li><span class="chip wip">En curso</span><span class="item-text">Revisión de fotos de inspección en catálogo.</span></li>
+          <li><span class="chip wip">En curso</span><span class="item-text">Alerta preventiva por errores de precio en publicaciones.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OPERACIONES - LOGÍSTICA ============ -->
+  <section class="squad" id="logistica" style="--dot:var(--squad-logistica)">
+    <div class="squad-head">
+      <h2><span class="dot"></span>Squad Operaciones <span class="subgroup-tag">Logística</span></h2>
+    </div>
+    <div class="foco"><b>Foco</b>Eliminar "cajas negras" del stock y asegurar trazabilidad 100%.</div>
+
+    <div class="two-col">
+      <div class="subsection">
+        <h3>Ya implementadas</h3>
+        <ul class="initiatives">
+          <li><span class="chip done">Hecho</span><span class="item-text">Alertas Gestpark: menos descuadres en sucursales.</span></li>
+          <li><span class="chip done">Hecho</span><span class="item-text">Checklist de Recepción: reporte semanal a zonales.</span></li>
+          <li><span class="chip done">Hecho</span><span class="item-text">Control de VPP y Compras sin trazabilidad.</span></li>
+          <li><span class="chip done">Hecho</span><span class="item-text">Reporte de recepciones pendientes a gerencias.</span></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>En desarrollo</h3>
+        <ul class="initiatives">
+          <li><span class="chip wip">En curso</span><span class="item-text">Recupero logístico de unidades en nota de venta.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note-card" style="margin-top:18px">
+      Más sucursales adheridas a recepción, pero el hábito aún depende de la gestión zonal.
+    </div>
+  </section>
+
+  <!-- ============ OPERACIONES - ATENCIÓN/VENTA ============ -->
+  <section class="squad" id="ventas" style="--dot:var(--squad-ventas)">
+    <div class="squad-head">
+      <h2><span class="dot"></span>Squad Operaciones <span class="subgroup-tag">Atención &amp; Venta</span></h2>
+    </div>
+    <div class="foco"><b>Foco</b>Mejoramiento de procesos internos.</div>
+
+    <div class="two-col">
+      <div class="subsection">
+        <h3>Ya implementadas</h3>
+        <ul class="initiatives">
+          <li><span class="chip done">Hecho</span><span class="item-text">Historial de tasaciones para el equipo CIN.</span></li>
+          <li><span class="chip done">Hecho</span><span class="item-text">Alertas por dueños y diferencias de KM en Inspección.</span></li>
+          <li><span class="chip done">Hecho</span><span class="item-text">Revisión de puntos de inspección y deméritos.</span></li>
+          <li><span class="chip done">Hecho</span><span class="item-text">Campo en CRM para tasadores (precio observado).</span></li>
+          <li><span class="chip done">Hecho</span><span class="item-text">VPP extendido a todos los concesionarios (antes solo SAIS).</span></li>
+          <li><span class="chip done">Hecho</span><span class="item-text">Mejora de integración VPP (errores de consistencia).</span></li>
+        </ul>
+      </div>
+      <div class="subsection">
+        <h3>En desarrollo</h3>
+        <ul class="initiatives">
+          <li><span class="chip wip">En curso</span><span class="item-text">Base Patente/Marca/Modelo/Año para validar datos del cliente.</span></li>
+          <li><span class="chip wip">En curso</span><span class="item-text">Integración Autofact → Inspección mecánica.</span></li>
+          <li><span class="chip wip">En curso</span><span class="item-text">Programa de Negociación Comercial V1 (formación).</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pagefoot">Programa Usados · Resumen ejecutivo por Squad</footer>
+</main>
+
+</body>
+</html>
